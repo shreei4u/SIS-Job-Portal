@@ -1,0 +1,3061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shield Job Portal | End-to-End Career &amp; Workforce Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root{
+  --black:#0a0a0c;
+  --black2:#141417;
+  --black3:#1d1d22;
+  --red:#c1121f;
+  --red-dark:#7a0c14;
+  --gold:#d4af37;
+  --gold-light:#f2d375;
+  --green:#7CFC00;
+  --green-dark:#4c9a00;
+  --text:#f3ede0;
+  --text-dim:#b9b3a5;
+  --border:#33323a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.brand{font-family:'Cinzel',serif;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ---------- 3D BUTTONS ---------- */
+.btn3d{
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  letter-spacing:.03em;
+  border:none;
+  cursor:pointer;
+  padding:14px 30px;
+  border-radius:10px;
+  background:linear-gradient(180deg,var(--gold-light),var(--gold) 55%,#a3822a);
+  color:#241a00;
+  box-shadow:
+    0 6px 0 #7a611c,
+    0 10px 18px -4px rgba(124,252,0,.55),
+    0 0 0 1px rgba(124,252,0,.25) inset;
+  transform:translateY(0);
+  transition:transform .12s ease, box-shadow .12s ease;
+  position:relative;
+}
+.btn3d:hover{box-shadow:0 6px 0 #7a611c,0 12px 26px -2px rgba(124,252,0,.75),0 0 0 1px rgba(124,252,0,.35) inset;}
+.btn3d:active{
+  transform:translateY(6px);
+  box-shadow:0 0 0 #7a611c,0 4px 10px -2px rgba(124,252,0,.5);
+}
+.btn3d.red{background:linear-gradient(180deg,#e8535f,var(--red) 55%,#6b0e17);color:#fff;box-shadow:0 6px 0 #57050c,0 10px 18px -4px rgba(124,252,0,.55),0 0 0 1px rgba(124,252,0,.25) inset;}
+.btn3d.red:hover{box-shadow:0 6px 0 #57050c,0 12px 26px -2px rgba(124,252,0,.75),0 0 0 1px rgba(124,252,0,.35) inset;}
+.btn3d.red:active{box-shadow:0 0 0 #57050c,0 4px 10px -2px rgba(124,252,0,.5);}
+.btn3d.dark{background:linear-gradient(180deg,#33333a,var(--black3) 60%,#000);color:var(--gold-light);box-shadow:0 6px 0 #000,0 10px 18px -4px rgba(124,252,0,.5),0 0 0 1px rgba(124,252,0,.2) inset;}
+.btn3d.dark:active{box-shadow:0 0 0 #000,0 4px 10px -2px rgba(124,252,0,.45);}
+.btn3d.small{padding:9px 18px;font-size:13px;border-radius:8px;}
+.btn3d:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ---------- NAV ---------- */
+header{
+  position:sticky;top:0;z-index:40;
+  background:linear-gradient(180deg,rgba(10,10,12,.97),rgba(10,10,12,.9));
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(6px);
+}
+.nav-wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+.brand{font-size:22px;font-weight:900;color:var(--gold-light);letter-spacing:.04em;}
+.brand span{color:var(--red);}
+.brand small{display:block;font-family:'Inter';font-size:10px;letter-spacing:.25em;color:var(--text-dim);font-weight:600;}
+nav ul{list-style:none;display:flex;gap:28px;}
+nav a{font-size:14px;font-weight:600;color:var(--text-dim);transition:color .2s;}
+nav a:hover{color:var(--gold-light);}
+
+/* ---------- HERO ---------- */
+.hero{
+  max-width:1200px;margin:0 auto;padding:70px 24px 40px;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;
+}
+.eyebrow{display:inline-block;color:var(--green);border:1px solid var(--green-dark);background:rgba(124,252,0,.07);padding:6px 14px;border-radius:30px;font-size:12px;letter-spacing:.15em;font-weight:700;margin-bottom:20px;}
+.hero h1{font-size:44px;line-height:1.15;color:var(--text);margin-bottom:20px;}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(90deg,var(--gold-light),var(--red));-webkit-background-clip:text;background-clip:text;}
+.hero p.lead{font-size:17px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;max-width:560px;}
+.moto{font-family:'Cinzel',serif;color:var(--gold-light);font-size:15px;letter-spacing:.08em;border-left:3px solid var(--red);padding-left:14px;margin:24px 0 30px;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+
+/* ---------- VISITING CARD (flip) ---------- */
+.card-scene{perspective:1600px;width:340px;justify-self:center;}
+.card-flip{
+  position:relative;width:340px;min-height:230px;
+  transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.2,.2,1), min-height .4s ease;
+}
+.card-flip.flipped{transform:rotateY(180deg);}
+.card-flip.flipped{min-height:430px;}
+.card-face{
+  position:absolute;inset:0;width:100%;height:100%;
+  backface-visibility:hidden;border-radius:16px;
+  background:linear-gradient(155deg,var(--black3) 0%,var(--black2) 55%,#000 100%);
+  border:1px solid var(--gold);
+  box-shadow:0 18px 40px -12px rgba(0,0,0,.7), 0 0 0 1px rgba(212,175,55,.15) inset, 0 0 24px -4px rgba(124,252,0,.25);
+  padding:26px 24px;
+  display:flex;flex-direction:column;
+}
+.card-face.back{transform:rotateY(180deg);overflow-y:auto;max-height:430px;}
+.card-crest{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.card-crest .dot{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);}
+.card-title{font-family:'Cinzel',serif;color:var(--gold-light);font-size:15px;letter-spacing:.1em;}
+.card-sub{color:var(--text-dim);font-size:12px;margin-top:2px;margin-bottom:20px;}
+.card-face .card-buttons{margin-top:auto;display:flex;flex-direction:column;gap:14px;}
+.card-face .card-buttons .btn3d{width:100%;text-align:center;}
+.card-back-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.card-back-head h3{color:var(--gold-light);font-size:16px;font-family:'Cinzel',serif;}
+.icon-close{background:none;border:1px solid var(--border);color:var(--text-dim);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;}
+.icon-close:hover{color:var(--red);border-color:var(--red);}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:11px;color:var(--text-dim);margin-bottom:5px;letter-spacing:.04em;}
+.field input,.field select{
+  width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);
+  background:#0e0e11;color:var(--text);font-size:13px;font-family:'Inter';
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.2);}
+.form-note{font-size:11px;color:var(--text-dim);margin-top:10px;text-align:center;}
+.form-note a{color:var(--green);font-weight:600;cursor:pointer;}
+.err-msg{color:#ff8a8a;font-size:11.5px;margin-top:-6px;margin-bottom:10px;display:none;}
+
+/* ---------- SERVICES ---------- */
+.section{max-width:1200px;margin:0 auto;padding:70px 24px;}
+.section-head{text-align:center;max-width:640px;margin:0 auto 46px;}
+.section-head .eyebrow{margin-bottom:14px;}
+.section-head h2{font-size:32px;color:var(--text);}
+.section-head p{color:var(--text-dim);margin-top:12px;font-size:15px;}
+.grid-services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc-card{
+  background:linear-gradient(160deg,var(--black2),var(--black3));
+  border:1px solid var(--border);border-radius:14px;padding:26px 22px;
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  position:relative;overflow:hidden;
+}
+.svc-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));}
+.svc-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 16px 30px -10px rgba(0,0,0,.6),0 0 18px -4px rgba(124,252,0,.25);}
+.svc-icon{width:46px;height:46px;border-radius:10px;background:linear-gradient(160deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.svc-card h3{font-size:17px;color:var(--gold-light);margin-bottom:8px;font-family:'Cinzel',serif;}
+.svc-card p{font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+
+/* ATS banner */
+.ats-banner{
+  margin-top:50px;border-radius:18px;padding:44px 40px;
+  background:linear-gradient(120deg,var(--red-dark),#2a0508 60%,var(--black));
+  border:1px solid var(--gold);
+  display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;
+  box-shadow:0 0 30px -6px rgba(124,252,0,.2);
+}
+.ats-banner h3{color:var(--gold-light);font-size:24px;margin-bottom:12px;}
+.ats-banner p{color:#eee0d8;font-size:14px;line-height:1.7;}
+.ats-pipeline{display:flex;gap:8px;flex-wrap:wrap;}
+.ats-stage{background:rgba(0,0,0,.35);border:1px solid rgba(212,175,55,.4);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--gold-light);font-weight:700;letter-spacing:.03em;}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.stat-box{text-align:center;border:1px solid var(--border);border-radius:12px;padding:26px 10px;background:var(--black2);}
+.stat-box b{display:block;font-size:30px;color:var(--gold-light);font-family:'Cinzel',serif;}
+.stat-box span{font-size:12px;color:var(--text-dim);}
+
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--text-dim);font-size:13px;}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-top:16px;flex-wrap:wrap;}
+.footer-social a{color:var(--gold-light);font-weight:700;font-size:12.5px;border:1px solid var(--border);border-radius:20px;padding:6px 16px;transition:border-color .2s,color .2s;}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);}
+.footer-contact{margin-top:14px;font-size:12px;color:var(--text-dim);display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+footer b{color:var(--gold-light);}
+
+/* toast */
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120%);
+  background:linear-gradient(160deg,var(--black3),var(--black2));border:1px solid var(--green);
+  color:var(--text);padding:14px 22px;border-radius:10px;font-size:13.5px;font-weight:600;
+  box-shadow:0 10px 26px -8px rgba(0,0,0,.7),0 0 20px -2px rgba(124,252,0,.5);
+  transition:transform .4s ease;z-index:200;display:flex;align-items:center;gap:10px;
+}
+#toast.show{transform:translateX(-50%) translateY(0);}
+#toast .dot{width:9px;height:9px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);}
+
+/* ---------- DASHBOARD ---------- */
+#dashboard{display:none;min-height:100vh;background:var(--black);}
+.dash-shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh;}
+.sidebar{background:var(--black2);border-right:1px solid var(--border);padding:26px 18px;display:flex;flex-direction:column;}
+.sidebar .brand{font-size:18px;margin-bottom:30px;}
+.side-role{background:linear-gradient(160deg,var(--red-dark),var(--black3));border:1px solid var(--gold);border-radius:10px;padding:14px;margin-bottom:24px;}
+.side-role .name{font-weight:700;color:var(--gold-light);font-size:14px;}
+.side-role .role{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+.side-nav{list-style:none;display:flex;flex-direction:column;gap:6px;flex:1;}
+.side-nav li a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:8px;font-size:13.5px;color:var(--text-dim);font-weight:600;cursor:pointer;}
+.side-nav li a.active,.side-nav li a:hover{background:rgba(212,175,55,.1);color:var(--gold-light);}
+.side-nav li.side-label{padding:14px 12px 6px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);font-weight:700;border-top:1px solid var(--border);margin-top:6px;}
+.dash-main{padding:30px 36px;overflow-y:auto;}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;}
+.dash-top h2{font-family:'Cinzel',serif;color:var(--gold-light);font-size:24px;}
+.dash-top p{color:var(--text-dim);font-size:13px;margin-top:4px;}
+.widgets{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px;}
+.widget{background:var(--black2);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.widget b{font-size:26px;color:var(--gold-light);font-family:'Cinzel',serif;display:block;}
+.widget span{font-size:12px;color:var(--text-dim);}
+.panel{background:var(--black2);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:24px;}
+.panel h3{color:var(--gold-light);font-family:'Cinzel',serif;font-size:16px;margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;color:var(--text-dim);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--border);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
+td{padding:10px 10px;border-bottom:1px solid var(--border);color:var(--text);}
+.badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge.green{background:rgba(124,252,0,.12);color:var(--green);border:1px solid var(--green-dark);}
+.badge.gold{background:rgba(212,175,55,.12);color:var(--gold-light);border:1px solid var(--gold);}
+
+/* ATS kanban */
+.kanban{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.kcol{background:#0e0e11;border:1px solid var(--border);border-radius:10px;padding:12px;min-height:120px;}
+.kcol h4{font-size:12px;color:var(--gold-light);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between;}
+.kcard{background:var(--black3);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px;font-size:12.5px;}
+.kcard b{display:block;color:var(--text);font-size:13px;}
+.kcard span{color:var(--text-dim);font-size:11px;}
+.kcard button{margin-top:8px;font-size:10.5px;padding:5px 10px;}
+
+.profile-form .field{margin-bottom:16px;}
+.profile-form textarea{
+  width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);
+  background:#0e0e11;color:var(--text);font-size:13px;font-family:'Inter';resize:vertical;min-height:80px;
+}
+.profile-form textarea:focus,.profile-form input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.2);}
+.resume-drop{
+  border:2px dashed var(--border);border-radius:10px;padding:22px;text-align:center;cursor:pointer;
+  background:#0e0e11;transition:border-color .2s,background .2s;position:relative;
+}
+.resume-drop:hover{border-color:var(--gold);}
+.resume-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.resume-drop .rd-title{color:var(--gold-light);font-weight:700;font-size:13.5px;}
+.resume-drop .rd-sub{color:var(--text-dim);font-size:11.5px;margin-top:4px;}
+.resume-drop.has-file{border-color:var(--green);border-style:solid;}
+.resume-drop .rd-file{color:var(--green);font-size:12.5px;font-weight:700;margin-top:6px;}
+.ats-choice{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:6px 0 20px;}
+.ats-option{
+  border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;
+  background:var(--black3);transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;
+}
+.ats-option:hover{transform:translateY(-2px);}
+.ats-option.selected{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset,0 0 18px -4px rgba(124,252,0,.5);}
+.ats-option .ao-tag{font-size:10.5px;letter-spacing:.08em;color:var(--text-dim);text-transform:uppercase;font-weight:700;}
+.ats-option .ao-price{font-family:'Cinzel',serif;font-size:24px;color:var(--gold-light);margin:8px 0 6px;}
+.ats-option .ao-price small{font-size:12px;color:var(--text-dim);font-family:'Inter';}
+.ats-option ul{margin:10px 0 0;padding-left:18px;color:var(--text-dim);font-size:12px;line-height:1.8;}
+.ats-option .ao-check{
+  position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);
+}
+.ats-option.selected .ao-check{border-color:var(--green);background:rgba(124,252,0,.15);}
+.profile-saved-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,252,0,.1);border:1px solid var(--green-dark);color:var(--green);padding:8px 14px;border-radius:30px;font-size:12.5px;font-weight:700;margin-bottom:18px;}
+
+.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:8px;}
+.offer-card{background:var(--black3);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;}
+.offer-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;border-radius:12px 12px 0 0;background:linear-gradient(90deg,var(--gold),var(--red));}
+.offer-card h4{color:var(--gold-light);font-size:14px;margin-bottom:6px;font-family:'Cinzel',serif;}
+.offer-card p{color:var(--text-dim);font-size:12px;line-height:1.6;margin-bottom:10px;min-height:36px;}
+.offer-meta{display:flex;justify-content:space-between;align-items:center;}
+.offer-price{color:var(--green);font-weight:700;font-size:13px;}
+.offer-del{background:none;border:1px solid var(--border);color:var(--text-dim);font-size:11px;padding:5px 9px;border-radius:6px;cursor:pointer;}
+.offer-del:hover{color:var(--red);border-color:var(--red);}
+.offer-empty{color:var(--text-dim);font-size:13px;padding:14px 0;}
+
+.form-section-label{color:var(--gold-light);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 12px;}
+.form-section-label:first-child{margin-top:0;}
+.check-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;}
+.check-item{display:flex;align-items:center;gap:9px;background:#0e0e11;border:1px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;font-size:12.5px;color:var(--text-dim);}
+.check-item input{accent-color:var(--gold);width:15px;height:15px;}
+.check-item.on{border-color:var(--gold);color:var(--text);}
+.job-card{background:var(--black3);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;position:relative;}
+.job-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;border-radius:12px 12px 0 0;background:linear-gradient(90deg,var(--red),var(--gold));}
+.job-card h4{color:var(--gold-light);font-family:'Cinzel',serif;font-size:16px;margin-bottom:4px;}
+.job-card .job-meta{color:var(--text-dim);font-size:12px;margin-bottom:10px;}
+.job-card .job-meta span{margin-right:14px;}
+.job-card p{color:var(--text-dim);font-size:12.5px;line-height:1.6;margin-bottom:8px;}
+.job-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
+.badge.red{background:rgba(193,18,31,.15);color:#ff8a8a;border:1px solid var(--red);}
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:300;
+  display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;
+}
+.modal-overlay.show{display:flex;}
+.modal-box{
+  background:linear-gradient(160deg,var(--black2),var(--black3));border:1px solid var(--gold);
+  border-radius:16px;max-width:720px;width:100%;padding:26px 28px;box-shadow:0 24px 60px -12px rgba(0,0,0,.8);
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.modal-head h3{color:var(--gold-light);font-family:'Cinzel',serif;font-size:18px;}
+.admin-item-card{background:var(--black3);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px;}
+.admin-item-card .cat-row{display:flex;gap:10px;align-items:end;margin-top:14px;}
+.admin-item-card .cat-row .field{flex:1;margin-bottom:0;}
+.admin-item-card .review-row{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.no-items{color:var(--text-dim);font-size:13px;padding:10px 0;}
+
+.search-bar{display:flex;gap:12px;max-width:640px;margin:0 auto 32px;}
+.search-bar input{
+  flex:1;padding:13px 16px;border-radius:10px;border:1px solid var(--border);
+  background:var(--black2);color:var(--text);font-size:14px;font-family:'Inter';
+}
+.search-bar input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.2);}
+.public-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.public-card{background:linear-gradient(160deg,var(--black2),var(--black3));border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;}
+.public-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--red),var(--gold));}
+.public-card h4{color:var(--gold-light);font-family:'Cinzel',serif;font-size:16px;margin-bottom:6px;}
+.public-card .pc-meta{color:var(--text-dim);font-size:12px;margin-bottom:10px;line-height:1.7;}
+.public-card p{color:var(--text-dim);font-size:12.5px;line-height:1.6;margin-bottom:14px;}
+.public-card .pc-price{color:var(--green);font-weight:700;font-size:14px;margin-bottom:12px;}
+.public-empty{grid-column:1/-1;text-align:center;color:var(--text-dim);font-size:14px;padding:30px 0;}
+
+.adv-search-box{
+  max-width:900px;margin:0 auto 32px;background:var(--black2);border:1px solid var(--border);
+  border-radius:14px;padding:20px 22px;
+}
+.adv-search-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.adv-search-grid .field{margin-bottom:0;}
+.adv-search-grid input{
+  width:100%;padding:11px 13px;border-radius:8px;border:1px solid var(--border);
+  background:#0e0e11;color:var(--text);font-size:13px;font-family:'Inter';
+}
+.adv-search-grid input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,175,55,.2);}
+@media(max-width:768px){.adv-search-grid{grid-template-columns:1fr 1fr;}}
+
+.activity-feed{max-height:420px;overflow-y:auto;}
+.activity-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:12.5px;}
+.activity-row:last-child{border-bottom:none;}
+.activity-row .dot{width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0;box-shadow:0 0 6px var(--green);}
+.activity-row .txt{color:var(--text);}
+.activity-row .time{color:var(--text-dim);font-size:11px;display:block;margin-top:2px;}
+.pipeline-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.pipeline-chip{background:var(--black3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:12px;color:var(--text-dim);}
+.pipeline-chip b{display:block;font-size:20px;color:var(--gold-light);font-family:'Cinzel',serif;}
+.crm-note{background:var(--black3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:12.5px;}
+.crm-note .time{color:var(--text-dim);font-size:11px;display:block;margin-top:4px;}
+
+.gauge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;text-align:center;}
+.gauge-card{background:var(--black3);border:1px solid var(--border);border-radius:12px;padding:18px 10px 14px;}
+.gauge-card svg{display:block;margin:0 auto;}
+.gauge-label{color:var(--gold-light);font-size:12.5px;font-weight:700;margin-top:10px;}
+.gauge-sub{color:var(--text-dim);font-size:11px;margin-top:2px;}
+.bar-chart{display:flex;flex-direction:column;gap:12px;}
+.bar-row{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:10px;font-size:12px;color:var(--text-dim);}
+.bar-track{background:#0e0e11;border:1px solid var(--border);border-radius:6px;height:14px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:6px;transition:width .4s ease;}
+.bar-value{text-align:right;color:var(--text);font-weight:700;}
+.crm-hired-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.crm-hired-chip{background:var(--black3);border:1px solid var(--green-dark);border-radius:8px;padding:10px 12px;font-size:12.5px;}
+.crm-hired-chip b{color:var(--green);display:block;font-size:13px;}
+
+.ats-table{font-size:12.5px;}
+.ats-table th{white-space:nowrap;}
+.ats-table td{vertical-align:top;}
+.stage-dropdown{display:inline-block;}
+.stage-dropdown summary{
+  cursor:pointer;list-style:none;color:var(--gold-light);font-weight:700;font-size:12px;
+  background:var(--black3);border:1px solid var(--border);border-radius:6px;padding:4px 10px;
+}
+.stage-dropdown summary::-webkit-details-marker{display:none;}
+.stage-checklist{
+  margin-top:6px;background:#0e0e11;border:1px solid var(--border);border-radius:8px;
+  padding:8px 10px;display:flex;flex-direction:column;gap:6px;min-width:150px;
+}
+.stage-checklist label{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text);cursor:pointer;}
+.stage-checklist input{accent-color:var(--gold);}
+.stage-hired-list{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--green);font-weight:600;}
+.ats-action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+
+.hidden{display:none !important;}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .grid-services{grid-template-columns:1fr 1fr;}
+  .ats-banner{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .dash-shell{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .widgets{grid-template-columns:1fr 1fr;}
+  .kanban{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= LANDING ================= -->
+<div id="landing">
+<header>
+  <div class="nav-wrap">
+    <div class="brand" id="siteBrand"><img id="siteLogoImg" src="" alt="" style="display:none;height:34px;vertical-align:middle;margin-right:8px;border-radius:6px;">SHIELD<span>JOB</span>PORTAL<small id="siteTagline">END TO END CAREER &amp; WORKFORCE SOLUTIONS</small></div>
+    <nav><ul>
+      <li><a href="#job-search" onclick="runAdvancedJobSearch()">Job Search</a></li>
+      <li><a href="#hire-freelancer" onclick="renderPublicFreelancers()">Hire Freelancer</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#ats">ATS</a></li>
+      <li><a href="#stats">Why Us</a></li>
+      <li><a href="#" onclick="openCard('login');return false;">Login</a></li>
+    </ul></nav>
+    <button class="btn3d small" onclick="openCard('register')">Register Free</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow" id="heroEyebrowText">● JOB SEEKERS &nbsp;·&nbsp; EMPLOYERS &nbsp;·&nbsp; FREELANCERS &nbsp;·&nbsp; TRAINERS &nbsp;·&nbsp; MANPOWER &nbsp;·&nbsp; CONTRACTORS</span>
+    <h1 id="heroTitleText">One Platform. Every Career Path. <em>End to End Excellence.</em></h1>
+    <p class="lead" id="heroLeadText">Shield Job Portal is where ambition meets opportunity. Whether you're hunting for your dream job, building a freelance career, hiring top talent, training the next workforce, deploying manpower, or executing large-scale contractual projects — we deliver a seamless, powerful and trusted experience from the first click to the final offer letter.</p>
+    <div class="moto" id="motoText">"OUR MOTTO — EMPOWERING PEOPLE. ENABLING ENTERPRISES. END TO END."</div>
+    <img id="siteBannerImg" src="" alt="" style="display:none;max-width:100%;border-radius:12px;margin-bottom:20px;border:1px solid var(--border);">
+    <div class="hero-cta">
+      <button class="btn3d" onclick="openCard('register')">Get Started — It's Free</button>
+      <button class="btn3d dark" onclick="document.getElementById('ats').scrollIntoView({behavior:'smooth'})">Explore ATS Service</button>
+    </div>
+  </div>
+
+  <div class="card-scene">
+    <div class="card-flip" id="cardFlip">
+      <div class="card-face front">
+        <div class="card-crest"><span class="dot"></span><span class="card-title">SHIELD ACCESS CARD</span></div>
+        <div class="card-sub">Present your credentials to enter the portal</div>
+        <div class="card-buttons">
+          <button class="btn3d" onclick="openCard('login')">Login</button>
+          <button class="btn3d red" onclick="openCard('register')">Register</button>
+        </div>
+      </div>
+      <div class="card-face back" id="cardBack"><!-- filled by JS --></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="section-head">
+    <span class="eyebrow">OUR SERVICES</span>
+    <h2>Built for Every Kind of Working Professional</h2>
+    <p>Six specialised portals, one unified ecosystem. Register once and unlock a dashboard tailored to exactly what you do.</p>
+  </div>
+  <div class="grid-services" id="svcGrid"></div>
+</section>
+
+<section class="section" id="job-search">
+  <div class="section-head">
+    <span class="eyebrow">JOB SEARCH</span>
+    <h2>Find Your Next Role</h2>
+    <p>Browse live, admin-approved job postings from verified employers. Search by title, company or location.</p>
+  </div>
+<div class="adv-search-box">
+    <div class="adv-search-grid">
+      <div class="field"><label>Job Title</label><input type="text" id="advJobTitle" placeholder="e.g. Sales Manager" oninput="runAdvancedJobSearch()"></div>
+      <div class="field"><label>Location</label><input type="text" id="advJobLocation" placeholder="e.g. Bengaluru / Remote" oninput="runAdvancedJobSearch()"></div>
+      <div class="field"><label>Salary</label><input type="text" id="advJobSalary" placeholder="e.g. 6 LPA" oninput="runAdvancedJobSearch()"></div>
+      <div class="field"><label>Skill</label><input type="text" id="advJobSkill" placeholder="e.g. React, Excel" oninput="runAdvancedJobSearch()"></div>
+    </div>
+    <button class="btn3d small" style="margin-top:14px;" onclick="runAdvancedJobSearch()">Search Jobs</button>
+  </div>
+  <div id="jobSearchResults" class="public-results"></div>
+</section>
+
+<section class="section" id="hire-freelancer">
+  <div class="section-head">
+    <span class="eyebrow">HIRE FREELANCER</span>
+    <h2>Hire Skilled Freelancers</h2>
+    <p>Browse admin-approved services from freelancers ready to work. Search by service, category or skill.</p>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="freelancerSearchInput" placeholder="Search by service, skill or category..." oninput="renderPublicFreelancers(this.value)">
+    <button class="btn3d small" onclick="renderPublicFreelancers(document.getElementById('freelancerSearchInput').value)">Search</button>
+  </div>
+  <div id="freelancerSearchResults" class="public-results"></div>
+</section>
+
+<section class="section" id="ats">
+  <div class="ats-banner">
+    <div>
+      <h3>Intelligent ATS — Applicant Tracking Service</h3>
+      <p>Employers and Admins get a built-in Applicant Tracking System to move candidates through Applied → Screening → Interview → Offer → Hired, without spreadsheets or guesswork. Track every candidate, at every stage, in real time.</p>
+      <div class="ats-pipeline" style="margin-top:18px;">
+        <span class="ats-stage">1 · APPLIED</span>
+        <span class="ats-stage">2 · SCREENING</span>
+        <span class="ats-stage">3 · INTERVIEW</span>
+        <span class="ats-stage">4 · OFFER</span>
+        <span class="ats-stage">5 · HIRED</span>
+      </div>
+    </div>
+    <div>
+      <button class="btn3d" style="width:100%;" onclick="openCard('register')">Register as Employer</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stats">
+  <div class="section-head">
+    <span class="eyebrow">WHY SHIELD</span>
+    <h2>Trusted End-to-End Delivery</h2>
+  </div>
+  <div class="stats">
+    <div class="stat-box"><b>6</b><span>Specialised Service Verticals</span></div>
+    <div class="stat-box"><b>100%</b><span>Role-based Dashboards</span></div>
+    <div class="stat-box"><b>ATS</b><span>Built-in Hiring Pipeline</span></div>
+    <div class="stat-box"><b>24×7</b><span>Portal Access</span></div>
+  </div>
+</section>
+
+<footer>
+  <div id="footerText"><b>Shield Job Portal</b> — a service of Shield Infra Solutions · Empowering Careers. Enabling Enterprises. End to End.</div>
+  <div id="footerSocial" class="footer-social"></div>
+  <div id="footerContact" class="footer-contact"></div>
+</footer>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboard">
+  <div class="dash-shell">
+    <div class="sidebar">
+      <div class="brand">SHIELD<span style="color:var(--red)">JOB</span></div>
+      <div class="side-role">
+        <div class="name" id="dNameSide">—</div>
+        <div class="role" id="dRoleSide">—</div>
+      </div>
+      <ul class="side-nav" id="sideNav"></ul>
+      <button class="btn3d dark small" style="width:100%;" onclick="logout()">Logout</button>
+    </div>
+    <div class="dash-main">
+      <div class="dash-top">
+        <div>
+          <h2 id="dashHeading">Overview</h2>
+          <p id="dashSub">Welcome back to Shield Job Portal</p>
+        </div>
+        <button class="btn3d red small" onclick="logout()">Logout</button>
+      </div>
+      <div id="dashContent"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"><span class="dot"></span><span id="toastMsg">Message</span></div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="modalTitle">Manage</h3><button class="icon-close" onclick="closeModal()">✕</button></div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>/* ============ AUDIO ============ */
+let actx;
+function ctx(){ if(!actx){ actx = new (window.AudioContext||window.webkitAudioContext)(); } return actx; }
+function playClick(){
+  try{
+    const c = ctx();
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.type='square'; o.frequency.value=520;
+    g.gain.setValueAtTime(0.06, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime+0.09);
+    o.connect(g); g.connect(c.destination);
+    o.start(); o.stop(c.currentTime+0.09);
+  }catch(e){}
+}
+function playApplyThankYou(){
+  try{
+    const c = ctx();
+    const notes=[659.25,783.99];
+    notes.forEach((f,i)=>{
+      const o=c.createOscillator(), g=c.createGain();
+      o.type='sine'; o.frequency.value=f;
+      const t=c.currentTime + i*0.18;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.linearRampToValueAtTime(0.06,t+0.06);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.42);
+      o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t+0.44);
+    });
+    if('speechSynthesis' in window){
+      const msg = "Thank you for applying. Your profile is currently under review, and you can check its status anytime in the My Applications section.";
+      const speak = ()=>{
+        const u = new SpeechSynthesisUtterance(msg);
+        u.rate = 0.93; u.pitch = 1.2; u.volume = 0.85;
+        const voices = window.speechSynthesis.getVoices();
+        const female = voices.find(v=>/female|zira|samantha|victoria|susan|karen|moira|tessa|fiona|google uk english female|google us english/i.test(v.name));
+        if(female) u.voice = female;
+        window.speechSynthesis.speak(u);
+      };
+      if(window.speechSynthesis.getVoices().length){ speak(); }
+      else { window.speechSynthesis.onvoiceschanged = speak; }
+    }
+  }catch(e){}
+}
+
+function playThankYou(){
+  try{
+    const c = ctx();
+    const notes=[523.25,659.25,783.99];
+    notes.forEach((f,i)=>{
+      const o=c.createOscillator(), g=c.createGain();
+      o.type='sine'; o.frequency.value=f;
+      const t=c.currentTime + i*0.14;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.linearRampToValueAtTime(0.09,t+0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.32);
+      o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t+0.34);
+    });
+    if('speechSynthesis' in window){
+      const u = new SpeechSynthesisUtterance('Thank you for registration');
+      u.rate=1; u.pitch=1; u.volume=0.9;
+      window.speechSynthesis.speak(u);
+    }
+  }catch(e){}
+}
+document.addEventListener('click', function(e){
+  if(e.target.closest('.btn3d') || e.target.closest('.card-face .icon-close') || e.target.closest('.kcard button')){
+    playClick();
+  }
+});
+document.addEventListener('change', function(e){
+  if(e.target.matches('#bgCheckGroup input[type=checkbox]')){
+    e.target.closest('.check-item').classList.toggle('on', e.target.checked);
+  }
+});
+
+/* ============ TOAST ============ */
+function toast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._tt);
+  window._tt=setTimeout(()=>t.classList.remove('show'), 3600);
+}
+
+/* ============ SERVICES DATA ============ */
+const services = [
+  {icon:'💼',title:'Job Seeker',desc:'Discover verified openings, build a standout profile and track every application from a single dashboard.'},
+  {icon:'🏢',title:'Employer',desc:'Post jobs, manage applicants and run your entire hiring pipeline with the built-in ATS.'},
+  {icon:'🧑‍💻',title:'Freelancer',desc:'Showcase your portfolio, bid on projects and get discovered by employers looking for specialised talent.'},
+  {icon:'🎓',title:'Trainer',desc:'List training programs and certifications, manage batches and connect with learners nationwide.'},
+  {icon:'👷',title:'Manpower Provider',desc:'Supply skilled and unskilled workforce to businesses with demand tracking and deployment tools.'},
+  {icon:'📑',title:'Project Contractual Service',desc:'Bid, manage and deliver contractual projects end to end with milestone and payment tracking.'},
+];
+const grid = document.getElementById('svcGrid');
+services.forEach(s=>{
+  grid.innerHTML += `<div class="svc-card"><div class="svc-icon">${s.icon}</div><h3>${s.title}</h3><p>${s.desc}</p></div>`;
+});
+
+/* ============ USERS (in-memory demo store) ============ */
+let users = [
+  {name:'Shreekant', email:'shreekant@shieldinfrasolutions.in', phone:'-', password:'Shree#2425@22267', role:'admin'}
+];
+let candidates = [
+  {name:'Aarav Sharma', role:'Frontend Developer', stage:0},
+  {name:'Isha Verma', role:'HR Executive', stage:1},
+  {name:'Rohit Nair', role:'Site Supervisor', stage:2},
+  {name:'Priya Das', role:'Data Analyst', stage:3},
+];
+const stages = ['Applied','Screening','Interview','Verification','Offer','Hired'];
+let currentUser = null;
+let profiles = {};
+let offerings = {};
+let jobPostings = [];
+let subscriptions = {};
+let courses = {};
+let manpowerDetails = {};
+let applications = {};
+let resumeFiles = {};
+let workforcePool = {};
+let deploymentRequests = {};
+let serviceLocations = {};
+let activeTab = '';
+let pricing = {
+  atsBoost: 299,
+  employerNormalPosting: 999,
+  employerHiringAssistant: 4999,
+  premiumSubscription: 499
+};
+let contractorProjects = {};
+let receivedBids = {};
+let activityLog = [];
+let crmNotes = {};
+let crmStatus = {};
+let siteSettings = {
+  heroEyebrow: '● JOB SEEKERS \u00a0\u00b7\u00a0 EMPLOYERS \u00a0\u00b7\u00a0 FREELANCERS \u00a0\u00b7\u00a0 TRAINERS \u00a0\u00b7\u00a0 MANPOWER \u00a0\u00b7\u00a0 CONTRACTORS',
+  heroTitle: 'One Platform. Every Career Path. End to End Excellence.',
+  heroLead: "Shield Job Portal is where ambition meets opportunity. Whether you're hunting for your dream job, building a freelance career, hiring top talent, training the next workforce, deploying manpower, or executing large-scale contractual projects — we deliver a seamless, powerful and trusted experience from the first click to the final offer letter.",
+  moto: '"OUR MOTTO — EMPOWERING PEOPLE. ENABLING ENTERPRISES. END TO END."',
+  footerText: '<b>Shield Job Portal</b> — a service of Shield Infra Solutions · Empowering Careers. Enabling Enterprises. End to End.',
+  logoUrl: '',
+  bannerUrl: '',
+  social: { facebook:'', twitter:'', linkedin:'', instagram:'', youtube:'' },
+  contact: { email:'', phone:'', address:'' }
+};
+
+function logActivity(text){
+  activityLog.unshift({text, time: new Date().toLocaleString()});
+  if(activityLog.length > 200) activityLog.pop();
+}
+
+function openModal(title, bodyHtml){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').innerHTML = bodyHtml;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+/* ============ CARD FLIP / FORMS ============ */
+const roleLabels = {
+  jobseeker:'Job Seeker', employer:'Employer', freelancer:'Freelancer',
+  trainer:'Trainer', manpower:'Manpower Provider', contractor:'Project Contractor'
+};
+
+function openCard(mode){
+  const back = document.getElementById('cardBack');
+  const flip = document.getElementById('cardFlip');
+  back.innerHTML = mode==='login' ? loginFormHTML() : registerFormHTML();
+  flip.classList.add('flipped');
+  document.querySelector('.card-scene').scrollIntoView({behavior:'smooth', block:'center'});
+}
+function closeCard(){
+  document.getElementById('cardFlip').classList.remove('flipped');
+}
+
+function loginFormHTML(){
+  return `
+  <div class="card-back-head"><h3>Member Login</h3><button class="icon-close" onclick="closeCard()">✕</button></div>
+  <form onsubmit="return doLogin(event)">
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com" required></div>
+    <div class="field"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" required></div>
+    <div class="err-msg" id="loginErr">Invalid email or password.</div>
+    <button class="btn3d red" style="width:100%;" type="submit">Login</button>
+  </form>
+  <div class="form-note">New here? <a onclick="openCard('register')">Create an account</a></div>`;
+}
+
+function registerFormHTML(){
+  return `
+  <div class="card-back-head"><h3>Create Account</h3><button class="icon-close" onclick="closeCard()">✕</button></div>
+  <form onsubmit="return doRegister(event)">
+    <div class="field"><label>I am a</label>
+      <select id="regRole" required>
+        <option value="">Select role</option>
+        <option value="jobseeker">Job Seeker</option>
+        <option value="employer">Employer</option>
+        <option value="freelancer">Freelancer</option>
+        <option value="trainer">Trainer</option>
+        <option value="manpower">Manpower Provider</option>
+        <option value="contractor">Project Contractor</option>
+      </select>
+    </div>
+    <div class="field"><label>Full Name</label><input type="text" id="regName" placeholder="Full name" required></div>
+    <div class="field"><label>Email</label><input type="email" id="regEmail" placeholder="you@example.com" required></div>
+    <div class="field"><label>Phone</label><input type="tel" id="regPhone" placeholder="10-digit mobile number" required></div>
+    <div class="field"><label>Password</label><input type="password" id="regPass" placeholder="Create a password" required></div>
+    <div class="err-msg" id="regErr">Please fill all fields correctly.</div>
+    <button class="btn3d" style="width:100%;" type="submit">Register</button>
+  </form>
+  <div class="form-note">Already registered? <a onclick="openCard('login')">Login instead</a></div>`;
+}
+
+function doRegister(e){
+  e.preventDefault();
+  const role = document.getElementById('regRole').value;
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const phone = document.getElementById('regPhone').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const err = document.getElementById('regErr');
+  if(!role || !name || !email || !phone || !pass){
+    err.textContent='Please fill all fields.'; err.style.display='block'; return false;
+  }
+  if(users.some(u=>u.email===email)){
+    err.textContent='This email is already registered. Please login.'; err.style.display='block'; return false;
+  }
+  users.push({name,email,phone,password:pass,role});
+  playThankYou();
+  toast('Thank you for registration, '+name+'! You can now login.');
+  logActivity('New registration: <b>'+name+'</b> ('+(roleLabels[role]||role)+')');
+  const back = document.getElementById('cardBack');
+  back.innerHTML = loginFormHTML();
+  setTimeout(()=>{ const le=document.getElementById('loginEmail'); if(le) le.value=email; },50);
+  return false;
+}
+
+function doLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginErr');
+  const user = users.find(u=>u.email===email && u.password===pass);
+  if(!user){ err.style.display='block'; return false; }
+  err.style.display='none';
+  currentUser = user;
+  closeCard();
+  toast('Welcome back, '+user.name+'!');
+  setTimeout(()=>showDashboard(user), 350);
+  return false;
+}
+
+function logout(){
+  currentUser = null;
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('landing').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============ DASHBOARDS ============ */
+const navByRole = {
+  admin:[['Overview','overview'],
+    ['__label__CRM'],
+    ['CRM Dashboard','crmdash'],
+    ['All Leads','crmleads'],
+    ['__label__Database'],
+    ['Job Seekers DB','db-jobseeker'],
+    ['Employers DB','db-employer'],
+    ['Freelancers DB','db-freelancer'],
+    ['Trainers DB','db-trainer'],
+    ['Manpower Contractors DB','db-manpower-contractor'],
+    ['ATS Pipeline','ats'],
+    ['Services','services'],
+    ['__label__Settings'],
+    ['Pricing','pricing'],
+    ['Site Settings','sitesettings']],
+  employer:[['Overview','overview'],['Job Postings','jobs'],['Applications','applications'],['ATS Pipeline','ats']],
+  jobseeker:[['Overview','overview'],['Job Search','jobsearch'],['My Applications','apps'],['Profile','profile']],
+  freelancer:[['Overview','overview'],['Profile','profile'],['Open Projects','projects'],['My Bids','bids']],
+  trainer:[['Overview','overview'],['My Batches','batches'],['Certifications','certs']],
+  manpower:[['Overview','overview'],['Workforce Pool','pool'],['Available Manpower List','available'],['Deployment Requests','deploy'],['Service Location','servicelocation']],
+  contractor:[['Overview','overview'],['Active Project List','activeprojects'],['Received Bid','receivedbid']],
+};
+
+function showDashboard(user){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  document.getElementById('dNameSide').textContent = user.name;
+  document.getElementById('dRoleSide').textContent = user.role==='admin' ? 'Administrator' : roleLabels[user.role];
+  const nav = navByRole[user.role] || navByRole.jobseeker;
+  const firstTab = nav.find(n=>!n[0].startsWith('__label__'));
+  document.getElementById('sideNav').innerHTML = nav.map((n)=>{
+    if(n[0].startsWith('__label__')){
+      return `<li class="side-label">${n[0].replace('__label__','')}</li>`;
+    }
+    return `<li><a class="${n[1]===firstTab[1]?'active':''}" onclick="switchTab(this,'${n[1]}')">${n[0]}</a></li>`;
+  }).join('');
+  renderTab(user, firstTab[1]);
+}
+function switchTab(el, tab){
+  document.querySelectorAll('.side-nav a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+  renderTab(currentUser, tab);
+}
+
+function renderTab(user, tab){
+  activeTab = tab;
+  const heading = document.getElementById('dashHeading');
+  const sub = document.getElementById('dashSub');
+  const c = document.getElementById('dashContent');
+  const tabTitles = {
+    overview:'Overview', ats:'ATS Pipeline', jobsearch:'Job Search', apps:'My Applications',
+    profile:'Profile', jobs:'Job Postings', applications:'Applications', pool:'Workforce Pool',
+    available:'Available Manpower List', deploy:'Deployment Requests', servicelocation:'Service Location',
+    activeprojects:'Active Project List', receivedbid:'Received Bid', bids:'My Bids', projects:'Open Projects',
+    batches:'My Batches', certs:'Certifications', services:'Services', pricing:'Pricing',
+    crmdash:'CRM Dashboard', crmleads:'All Leads', sitesettings:'Site Settings'
+  };
+  heading.textContent = tab.startsWith('db-') ? (dbLabel(tab.replace('db-',''))+' Database') : (tabTitles[tab] || (tab.charAt(0).toUpperCase()+tab.slice(1)));
+  sub.textContent = 'Signed in as '+user.email;
+
+  if(tab==='overview'){
+    c.innerHTML = overviewWidgets(user) + (user.role==='employer'||user.role==='admin' ? atsPanel(user) : '') + (user.role==='admin' ? crmSnapshotWidget() : '') + activityPanel(user);
+  } else if(tab==='crmdash' && user.role==='admin'){
+    c.innerHTML = crmDashboardPanel();
+  } else if(tab==='crmleads' && user.role==='admin'){
+    c.innerHTML = crmLeadsPanel();
+  } else if(tab.startsWith('db-') && user.role==='admin'){
+    c.innerHTML = databasePanel(tab.replace('db-',''));
+  } else if(tab==='users' && user.role==='admin'){
+    c.innerHTML = usersPanel();
+  } else if(tab==='ats'){
+    c.innerHTML = atsPanel(user);
+  } else if(tab==='services' && user.role==='admin'){
+    c.innerHTML = servicesPanel();
+  } else if(tab==='pricing' && user.role==='admin'){
+    c.innerHTML = pricingPanel();
+  } else if(tab==='sitesettings' && user.role==='admin'){
+    c.innerHTML = siteSettingsPanel();
+  } else if(tab==='profile' && user.role==='jobseeker'){
+    c.innerHTML = jobSeekerProfilePanel(user);
+  } else if(tab==='jobsearch' && user.role==='jobseeker'){
+    c.innerHTML = jobSeekerJobSearchPanel(user);
+    renderDashJobResults('');
+  } else if(tab==='apps' && user.role==='jobseeker'){
+    c.innerHTML = jobSeekerApplicationsPanel(user);
+  } else if(tab==='profile' && user.role==='freelancer'){
+    c.innerHTML = freelancerProfilePanel(user);
+  } else if(tab==='jobs' && user.role==='employer'){
+    c.innerHTML = employerJobsPanel(user);
+  } else if(tab==='applications' && user.role==='employer'){
+    c.innerHTML = employerApplicationsPanel(user);
+  } else if(tab==='pool' && user.role==='manpower'){
+    c.innerHTML = workforcePoolPanel(user);
+  } else if(tab==='available' && user.role==='manpower'){
+    c.innerHTML = availableManpowerPanel(user);
+  } else if(tab==='deploy' && user.role==='manpower'){
+    c.innerHTML = deploymentRequestsPanel(user);
+  } else if(tab==='servicelocation' && user.role==='manpower'){
+    c.innerHTML = serviceLocationPanel(user);
+  } else if(tab==='activeprojects' && user.role==='contractor'){
+    c.innerHTML = activeProjectListPanel(user);
+  } else if(tab==='receivedbid' && user.role==='contractor'){
+    c.innerHTML = receivedBidPanel(user);
+  } else {
+    c.innerHTML = genericPanel(tab);
+  }
+}
+
+function overviewWidgets(user){
+  if(user.role==='admin'){
+    const counts = {};
+    users.forEach(u=>{counts[u.role]=(counts[u.role]||0)+1;});
+    return `<div class="widgets">
+      <div class="widget"><b>${users.length}</b><span>Total Registered Users</span></div>
+      <div class="widget"><b>${counts.employer||0}</b><span>Employers</span></div>
+      <div class="widget"><b>${candidates.length}</b><span>Candidates in ATS</span></div>
+      <div class="widget"><b>6</b><span>Active Service Verticals</span></div>
+    </div>`;
+  }
+  return `<div class="widgets">
+    <div class="widget"><b>${roleLabels[user.role]||'Member'}</b><span>Account Type</span></div>
+    <div class="widget"><b>Active</b><span>Profile Status</span></div>
+    <div class="widget"><b>0</b><span>New Notifications</span></div>
+    <div class="widget"><b>100%</b><span>Profile Completion</span></div>
+  </div>`;
+}
+
+function activityPanel(user){
+  return `<div class="panel"><h3>Welcome, ${user.name}</h3>
+    <p style="color:var(--text-dim);font-size:13.5px;line-height:1.7;">
+    This is your Shield Job Portal dashboard as a <b style="color:var(--gold-light)">${user.role==='admin'?'Administrator':roleLabels[user.role]}</b>.
+    This prototype demonstrates end-to-end flow: registration → login → role-based dashboard. Connect a real backend
+    to persist data, send notifications and power live job matching.</p></div>`;
+}
+
+function usersPanel(){
+  let rows = users.map(u=>`<tr>
+    <td>${u.name}</td><td>${u.email}</td>
+    <td><span class="badge ${u.role==='admin'?'gold':'green'}">${u.role==='admin'?'Admin':roleLabels[u.role]}</span></td>
+    <td>${u.phone||'-'}</td>
+  </tr>`).join('');
+  return `<div class="panel"><h3>All Registered Users</h3>
+  <table><tr><th>Name</th><th>Email</th><th>Role</th><th>Phone</th></tr>${rows}</table></div>`;
+}
+
+function getSubscription(u){
+  if(u.role==='jobseeker'){
+    const p = profiles[u.email];
+    return (p && p.ats) ? {label:'ATS · ₹'+pricing.atsBoost+' Active', active:true} : {label:'Free listing', active:false};
+  }
+  return subscriptions[u.email]==='Premium' ? {label:'Premium · ₹'+pricing.premiumSubscription, active:true} : {label:'Free', active:false};
+}
+
+function dbLabel(key){
+  if(key==='manpower-contractor') return 'Manpower Contractors';
+  return roleLabels[key] || key;
+}
+function rolesForDbKey(key){
+  if(key==='manpower-contractor') return ['manpower','contractor'];
+  return [key];
+}
+
+function databasePanel(key){
+  const roleSet = rolesForDbKey(key);
+  const list = users.filter(u=>roleSet.includes(u.role));
+  const roleName = dbLabel(key);
+
+  let headerExtra = '';
+  let cellsFn = ()=>'';
+  if(key==='jobseeker'){
+    headerExtra = '<th>Profile</th><th>CV</th><th>Review</th>';
+    cellsFn = jobseekerExtraCells;
+  } else if(key==='employer'){
+    headerExtra = '<th>Job Postings</th><th>Category</th><th>Review</th>';
+    cellsFn = employerExtraCells;
+  } else if(key==='freelancer'){
+    headerExtra = '<th>Services Offered</th><th>Category</th><th>Review</th>';
+    cellsFn = freelancerExtraCells;
+  } else if(key==='trainer'){
+    headerExtra = '<th>Courses Offered</th><th>Category</th><th>Review</th>';
+    cellsFn = trainerExtraCells;
+  } else if(key==='manpower-contractor'){
+    headerExtra = '<th>Manpower Role(s)</th><th>Location (Address)</th><th>Contact Person</th><th>Contract Period</th><th>Details</th>';
+    cellsFn = manpowerExtraCells;
+  }
+
+  const rows = list.map(u=>{
+    const s = getSubscription(u);
+    return `<tr>
+      <td>${u.name}</td>
+      <td>${u.email}</td>
+      <td>${u.phone||'-'}</td>
+      ${roleSet.length>1 ? `<td><span class="badge gold">${roleLabels[u.role]}</span></td>` : ''}
+      <td><span class="badge ${s.active?'green':'gold'}">${s.label}</span></td>
+      ${cellsFn(u)}
+      <td style="white-space:nowrap;">
+        <button class="btn3d small dark" onclick="editUser('${u.email}')">Edit</button>
+        <button class="btn3d small" onclick="toggleSubscription('${u.email}')">${s.active?'Downgrade':'Upgrade'}</button>
+        <button class="btn3d small red" onclick="deleteUser('${u.email}')">Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="panel">
+    <h3>${roleName} Database</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">${list.length} registered ${roleName.toLowerCase()}${list.length===1?'':'s'}. Edit details, review submissions, and manage subscriptions.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Name</th><th>Email</th><th>Phone</th>${roleSet.length>1?'<th>Role</th>':''}<th>Subscription</th>${headerExtra}<th>Actions</th></tr>
+      ${rows || `<tr><td colspan="10" style="color:var(--text-dim);">No users registered yet in this database.</td></tr>`}
+    </table>
+    </div>
+  </div>`;
+}
+
+function statusBadge(status){
+  status = status || 'Pending';
+  const cls = status==='Published' ? 'green' : (status==='Rejected' ? 'red' : 'gold');
+  return `<span class="badge ${cls}">${status}</span>`;
+}
+
+/* ---- Job Seeker extra cells ---- */
+function jobseekerExtraCells(u){
+  const p = profiles[u.email] || {};
+  return `
+    <td>
+      <button class="btn3d small dark" onclick="openJobseekerProfileModal('${u.email}')">${p.saved ? 'View/Edit' : 'No Profile'}</button>
+    </td>
+    <td>
+      <button class="btn3d small dark" onclick="openCvModal('${u.email}')">${p.resumeName ? 'Edit' : 'Add CV'}</button>
+      ${p.resumeName ? `<button class="btn3d small" onclick="viewResume('${u.email}')">View / Download</button>` : ''}
+    </td>
+    <td>${statusBadge(p.reviewStatus)}<div style="margin-top:6px;display:flex;gap:6px;">
+      <button class="btn3d small" onclick="setReviewStatus('${u.email}','Published')">Publish</button>
+      <button class="btn3d small red" onclick="setReviewStatus('${u.email}','Rejected')">Reject</button>
+    </div></td>`;
+}
+
+/* ---- Employer extra cells ---- */
+function employerExtraCells(u){
+  const items = jobPostings.filter(j=>j.postedBy===u.email);
+  return `
+    <td><button class="btn3d small dark" onclick="openEmployerPostingsModal('${u.email}')">${items.length} Posting${items.length===1?'':'s'}</button></td>
+    <td><button class="btn3d small dark" onclick="openEmployerPostingsModal('${u.email}')">Edit Category</button></td>
+    <td><button class="btn3d small dark" onclick="openEmployerPostingsModal('${u.email}')">Review</button></td>`;
+}
+
+/* ---- Freelancer extra cells ---- */
+function freelancerExtraCells(u){
+  const items = offerings[u.email] || [];
+  return `
+    <td><button class="btn3d small dark" onclick="openFreelancerOfferingsModal('${u.email}')">${items.length} Service${items.length===1?'':'s'}</button></td>
+    <td><button class="btn3d small dark" onclick="openFreelancerOfferingsModal('${u.email}')">Edit Category</button></td>
+    <td><button class="btn3d small dark" onclick="openFreelancerOfferingsModal('${u.email}')">Review</button></td>`;
+}
+
+/* ---- Trainer extra cells ---- */
+function trainerExtraCells(u){
+  const items = courses[u.email] || [];
+  return `
+    <td><button class="btn3d small dark" onclick="openTrainerCoursesModal('${u.email}')">${items.length} Course${items.length===1?'':'s'}</button></td>
+    <td><button class="btn3d small dark" onclick="openTrainerCoursesModal('${u.email}')">Edit Category</button></td>
+    <td><button class="btn3d small dark" onclick="openTrainerCoursesModal('${u.email}')">Review</button></td>`;
+}
+
+/* ---- Manpower / Contractor extra cells ---- */
+function manpowerExtraCells(u){
+  const d = manpowerDetails[u.email] || {};
+  const roles = (d.roles && d.roles.length) ? d.roles.join(', ') : '—';
+  const loc = d.locationAddress || '—';
+  const contact = (d.contactName || d.contactNumber) ? `${d.contactName||'—'} · ${d.contactNumber||'—'}` : '—';
+  const timeline = d.timeline || '—';
+  return `
+    <td>${roles}</td>
+    <td style="max-width:180px;">${loc}</td>
+    <td>${contact}</td>
+    <td>${timeline}</td>
+    <td><button class="btn3d small dark" onclick="openManpowerDetailsModal('${u.email}')">Edit Details</button></td>`;
+}
+
+function dbKeyForRole(role){
+  return (role==='manpower' || role==='contractor') ? 'manpower-contractor' : role;
+}
+
+function toggleSubscription(email){
+  const u = users.find(x=>x.email===email);
+  if(!u) return;
+  if(u.role==='jobseeker'){
+    if(!profiles[email]) profiles[email] = {};
+    profiles[email].ats = !profiles[email].ats;
+  } else {
+    subscriptions[email] = subscriptions[email]==='Premium' ? 'Free' : 'Premium';
+  }
+  playClick();
+  toast('Subscription updated for '+u.name);
+  renderTab(currentUser, 'db-'+dbKeyForRole(u.role));
+}
+
+function editUser(email){
+  const u = users.find(x=>x.email===email);
+  if(!u) return;
+  const newName = prompt('Edit name:', u.name);
+  if(newName===null) return;
+  const newPhone = prompt('Edit phone:', u.phone||'');
+  if(newPhone===null) return;
+  u.name = newName.trim() || u.name;
+  u.phone = newPhone.trim();
+  playClick();
+  toast('User updated: '+u.name);
+  renderTab(currentUser, 'db-'+dbKeyForRole(u.role));
+}
+
+function deleteUser(email){
+  if(currentUser && email===currentUser.email){ alert("You can't delete the account you're logged in as."); return; }
+  const u = users.find(x=>x.email===email);
+  if(!u) return;
+  if(!confirm('Remove '+u.name+' ('+u.email+') from the database? This cannot be undone.')) return;
+  const key = dbKeyForRole(u.role);
+  users = users.filter(x=>x.email!==email);
+  delete profiles[email];
+  delete offerings[email];
+  delete subscriptions[email];
+  playClick();
+  toast('User removed from database.');
+  renderTab(currentUser, 'db-'+key);
+}
+
+function servicesPanel(){
+  return `<div class="panel"><h3>Active Service Verticals</h3>
+  <table><tr><th>Service</th><th>Users</th><th>Status</th></tr>
+  ${services.map(s=>{
+    const count = users.filter(u=>roleLabels[u.role]===s.title).length;
+    return `<tr><td>${s.title}</td><td>${count}</td><td><span class="badge green">Live</span></td></tr>`;
+  }).join('')}
+  </table></div>`;
+}
+
+function atsStageCell(candidateList, stageIdx){
+  const inStage = candidateList.filter(c=>c.stage===stageIdx);
+  if(!inStage.length) return `<span style="color:var(--text-dim);font-size:11px;">—</span>`;
+  const items = inStage.map(c=>{
+    const gIdx = candidates.indexOf(c);
+    return `<label><input type="checkbox" class="ats-check" value="${gIdx}"> ${c.name}</label>`;
+  }).join('');
+  return `<details class="stage-dropdown">
+    <summary>${inStage.length} ▾</summary>
+    <div class="stage-checklist">${items}</div>
+  </details>`;
+}
+function atsHiredCell(candidateList){
+  const hired = candidateList.filter(c=>c.stage===stages.length-1);
+  if(!hired.length) return `<span style="color:var(--text-dim);font-size:11px;">—</span>`;
+  return `<div class="stage-hired-list">${hired.map(c=>`<div>${c.name}</div>`).join('')}</div>`;
+}
+
+function atsPanel(user){
+  const isAdmin = user.role === 'admin';
+  let rowJobIdx;
+  if(isAdmin){
+    rowJobIdx = jobPostings.map((j,i)=>i).filter(i=> jobPostings[i].status==='Published' && jobPostings[i].openStatus!=='Closed');
+  } else {
+    rowJobIdx = jobPostings.map((j,i)=>i).filter(i=> jobPostings[i].postedBy===user.email);
+  }
+
+  const rows = rowJobIdx.map(idx=>{
+    const job = jobPostings[idx];
+    const jobCandidates = isAdmin ? candidates.filter(c=>c.jobIdx===idx) : candidates.filter(c=> c.jobIdx===idx && c.applicantEmail);
+    const employerName = isAdmin ? job.company : user.name;
+    return `<tr>
+      <td>${employerName}</td>
+      <td>${job.title}</td>
+      <td>${atsStageCell(jobCandidates,0)}</td>
+      <td>${atsStageCell(jobCandidates,1)}</td>
+      <td>${atsStageCell(jobCandidates,2)}</td>
+      <td>${atsStageCell(jobCandidates,3)}</td>
+      <td>${atsStageCell(jobCandidates,4)}</td>
+      <td>${atsHiredCell(jobCandidates)}</td>
+    </tr>`;
+  }).join('');
+
+  let unassignedRow = '';
+  if(isAdmin){
+    const unassigned = candidates.filter(c=>c.jobIdx===undefined || c.jobIdx===null);
+    if(unassigned.length){
+      unassignedRow = `<tr>
+        <td>—</td>
+        <td>Unassigned</td>
+        <td>${atsStageCell(unassigned,0)}</td>
+        <td>${atsStageCell(unassigned,1)}</td>
+        <td>${atsStageCell(unassigned,2)}</td>
+        <td>${atsStageCell(unassigned,3)}</td>
+        <td>${atsStageCell(unassigned,4)}</td>
+        <td>${atsHiredCell(unassigned)}</td>
+      </tr>`;
+    }
+  }
+
+  const addBtn = isAdmin ? `<button class="btn3d small red" onclick="addCandidate()">+ Add Candidate</button>` : '';
+
+  return `<div class="panel">
+    <h3>ATS · Applicant Tracking Pipeline ${isAdmin ? '— All Active Jobs' : '— Your Posted Jobs'}</h3>
+    <div style="overflow-x:auto;">
+    <table class="ats-table">
+      <tr><th>Employer Name</th><th>Post</th><th>Applied</th><th>Screening</th><th>Interview</th><th>Verification</th><th>Offer</th><th>Hired</th></tr>
+      ${rows || unassignedRow ? rows+unassignedRow : `<tr><td colspan="8" style="color:var(--text-dim);">${isAdmin?'No active job postings right now.':'You haven\'t posted any jobs yet.'}</td></tr>`}
+    </table>
+    </div>
+    <div class="ats-action-row">
+      ${addBtn}
+      <button class="btn3d small" onclick="moveSelectedTo('Screening')">Move - Screening</button>
+      <button class="btn3d small" onclick="moveSelectedTo('Interview')">Move - Interview</button>
+      <button class="btn3d small" onclick="moveSelectedTo('Verification')">Move - Verification</button>
+      <button class="btn3d small" onclick="moveSelectedTo('Offer')">Move - Offer</button>
+      <button class="btn3d small" onclick="moveSelectedTo('Hired')">Move - Hired</button>
+    </div>
+  </div>`;
+}
+
+function moveSelectedTo(stageName){
+  const targetIdx = stages.indexOf(stageName);
+  if(targetIdx === -1) return;
+  const checked = Array.from(document.querySelectorAll('.ats-check:checked'));
+  if(!checked.length){ toast('Select at least one candidate first.'); return; }
+  checked.forEach(chk=>{
+    const i = parseInt(chk.value, 10);
+    const c = candidates[i];
+    if(!c) return;
+    c.stage = targetIdx;
+    if(c.applicantEmail){
+      const app = (applications[c.applicantEmail]||[]).find(a=>a.jobIdx===c.jobIdx);
+      if(app) app.status = stages[targetIdx];
+    }
+    logActivity('<b>'+c.name+'</b> moved to <b>'+stageName+'</b>'+(c.role?' for '+c.role:''));
+  });
+  playClick();
+  toast(checked.length+' candidate'+(checked.length===1?'':'s')+' moved to '+stageName+'.');
+  renderTab(currentUser, activeTab==='overview' ? 'overview' : 'ats');
+}
+
+function addCandidate(){
+  if(!currentUser || currentUser.role!=='admin'){ toast('Only admin can add unassigned candidates directly.'); return; }
+  const n = prompt('Candidate name:');
+  if(!n) return;
+  const r = prompt('Applying for role:') || 'General';
+  candidates.push({name:n, role:r, stage:0});
+  logActivity('Admin directly added candidate <b>'+n+'</b>');
+  renderTab(currentUser, activeTab==='overview' ? 'overview' : 'ats');
+}
+
+function jobSeekerProfilePanel(user){
+  const p = profiles[user.email] || {};
+  const atsSel = p.ats===true ? 'with' : (p.ats===false ? 'without' : '');
+  const savedBadge = p.saved ? `<div class="profile-saved-badge">✓ Profile saved · ${p.ats ? 'ATS Enabled (₹'+pricing.atsBoost+' paid)' : 'Standard listing (Free)'}</div>` : '';
+  return `<div class="panel">
+    <h3>Build Your Profile</h3>
+    ${savedBadge}
+    <form class="profile-form" onsubmit="return saveProfile(event)">
+      <h4 style="color:var(--gold-light);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;">Personal &amp; Contact</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Full Name</label><input type="text" id="pfName" value="${user.name}" required></div>
+        <div class="field"><label>Email</label><input type="email" id="pfEmail" value="${user.email}" readonly style="opacity:.7;"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="pfPhone" value="${user.phone||''}" required></div>
+        <div class="field"><label>WhatsApp Number</label><input type="tel" id="pfWhatsapp" value="${p.whatsapp||''}" placeholder="10-digit WhatsApp number"></div>
+        <div class="field"><label>Current Location</label><input type="text" id="pfCurLoc" value="${p.curLocation||''}" placeholder="e.g. Jamshedpur, Jharkhand"></div>
+        <div class="field"><label>Desired Location</label><input type="text" id="pfDesLoc" value="${p.desLocation||''}" placeholder="e.g. Bengaluru / Remote"></div>
+        <div class="field"><label>Marital Status</label>
+          <select id="pfMarital">
+            <option value="" ${!p.marital?'selected':''}>Select</option>
+            <option value="Married" ${p.marital==='Married'?'selected':''}>Married</option>
+            <option value="Not Married" ${p.marital==='Not Married'?'selected':''}>Not Married</option>
+          </select>
+        </div>
+        <div class="field"><label>LinkedIn Profile URL</label><input type="text" id="pfLinkedin" value="${p.linkedin||''}" placeholder="https://linkedin.com/in/..."></div>
+      </div>
+
+      <h4 style="color:var(--gold-light);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 12px;">Professional Details</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Desired Job Title</label><input type="text" id="pfTitle" value="${p.title||''}" placeholder="e.g. Frontend Developer" required></div>
+        <div class="field"><label>Total Experience</label><input type="text" id="pfExp" value="${p.exp||''}" placeholder="e.g. 2 years"></div>
+        <div class="field"><label>Qualification</label><input type="text" id="pfQualification" value="${p.qualification||''}" placeholder="e.g. B.Tech in CSE"></div>
+        <div class="field"><label>Projects Done</label><input type="text" id="pfProjects" value="${p.projectsDone||''}" placeholder="e.g. 5 live projects"></div>
+        <div class="field"><label>Current Company Name</label><input type="text" id="pfCompany" value="${p.company||''}" placeholder="e.g. ABC Pvt Ltd"></div>
+        <div class="field"><label>Current Salary</label><input type="text" id="pfCurSalary" value="${p.curSalary||''}" placeholder="e.g. ₹5,00,000 / annum"></div>
+        <div class="field"><label>Expected Salary</label><input type="text" id="pfSalary" value="${p.salary||''}" placeholder="e.g. ₹6,00,000 / annum"></div>
+        <div class="field"><label>Notice Period</label><input type="text" id="pfNotice" value="${p.notice||''}" placeholder="e.g. 30 days"></div>
+      </div>
+      <div class="field"><label>Reason For Change</label><input type="text" id="pfReason" value="${p.reason||''}" placeholder="e.g. Career growth, relocation"></div>
+      <div class="field"><label>Key Skills</label><input type="text" id="pfSkills" value="${p.skills||''}" placeholder="e.g. React, Node.js, SQL"></div>
+      <div class="field"><label>Project Link (if any)</label><input type="text" id="pfProjectLink" value="${p.projectLink||''}" placeholder="https://github.com/... or live demo link"></div>
+      <div class="field"><label>About / Summary</label><textarea id="pfAbout" placeholder="A short summary about your experience and goals...">${p.about||''}</textarea></div>
+
+      <h4 style="color:var(--gold-light);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 12px;">References (Any Two)</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Reference 1 — Name &amp; Contact</label><input type="text" id="pfRef1" value="${p.ref1||''}" placeholder="Name, designation, phone/email"></div>
+        <div class="field"><label>Reference 2 — Name &amp; Contact</label><input type="text" id="pfRef2" value="${p.ref2||''}" placeholder="Name, designation, phone/email"></div>
+      </div>
+
+      <div class="field">
+        <label>Upload Resume (PDF / DOC / DOCX)</label>
+        <div class="resume-drop ${p.resumeName?'has-file':''}" id="resumeDrop">
+          <input type="file" id="pfResume" accept=".pdf,.doc,.docx" onchange="handleResumeChange(this)">
+          <div class="rd-title">📄 Click or drop your resume here</div>
+          <div class="rd-sub">Max size 5MB</div>
+          <div class="rd-file" id="resumeFileName">${p.resumeName ? 'Selected: '+p.resumeName : ''}</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>ATS (Applicant Tracking) Boost</label>
+        <div class="ats-choice">
+          <div class="ats-option ${atsSel==='with'?'selected':''}" id="optWith" onclick="selectAts('with')">
+            <span class="ao-check">${atsSel==='with'?'✓':''}</span>
+            <span class="ao-tag">Recommended</span>
+            <div class="ao-price">₹${pricing.atsBoost} <small>/ one-time</small></div>
+            <b style="color:var(--text)">With ATS Service</b>
+            <ul>
+              <li>Priority visibility to Employers</li>
+              <li>Profile enters the ATS pipeline directly</li>
+              <li>Resume keyword optimisation check</li>
+              <li>Faster shortlisting</li>
+            </ul>
+          </div>
+          <div class="ats-option ${atsSel==='without'?'selected':''}" id="optWithout" onclick="selectAts('without')">
+            <span class="ao-check">${atsSel==='without'?'✓':''}</span>
+            <span class="ao-tag">Basic</span>
+            <div class="ao-price">Free</div>
+            <b style="color:var(--text)">Without ATS Service</b>
+            <ul>
+              <li>Standard profile listing</li>
+              <li>Visible in general search</li>
+              <li>Manual application only</li>
+              <li>Upgrade anytime later</li>
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" id="pfAts" value="${atsSel}">
+      </div>
+
+      <button class="btn3d" type="submit">Save Profile</button>
+    </form>
+  </div>`;
+}
+
+function selectAts(choice){
+  document.getElementById('pfAts').value = choice;
+  document.getElementById('optWith').classList.toggle('selected', choice==='with');
+  document.getElementById('optWithout').classList.toggle('selected', choice==='without');
+  document.getElementById('optWith').querySelector('.ao-check').textContent = choice==='with' ? '✓' : '';
+  document.getElementById('optWithout').querySelector('.ao-check').textContent = choice==='without' ? '✓' : '';
+}
+
+function handleResumeChange(input){
+  const drop = document.getElementById('resumeDrop');
+  const label = document.getElementById('resumeFileName');
+  if(input.files && input.files[0]){
+    const f = input.files[0];
+    if(f.size > 5*1024*1024){
+      label.textContent = 'File too large — max 5MB';
+      drop.classList.remove('has-file');
+      input.value='';
+      return;
+    }
+    label.textContent = 'Selected: '+f.name;
+    drop.classList.add('has-file');
+  }
+}
+
+function saveProfile(e){
+  e.preventDefault();
+  const ats = document.getElementById('pfAts').value;
+  if(!ats){
+    alert('Please choose whether you want the ATS service (₹'+pricing.atsBoost+') or a free standard listing.');
+    return false;
+  }
+  const resumeInput = document.getElementById('pfResume');
+  const resumeName = resumeInput.files && resumeInput.files[0] ? resumeInput.files[0].name : (profiles[currentUser.email]?.resumeName || '');
+  if(resumeInput.files && resumeInput.files[0]){
+    resumeFiles[currentUser.email] = resumeInput.files[0];
+  }
+  profiles[currentUser.email] = {
+    title: document.getElementById('pfTitle').value.trim(),
+    exp: document.getElementById('pfExp').value.trim(),
+    salary: document.getElementById('pfSalary').value.trim(),
+    skills: document.getElementById('pfSkills').value.trim(),
+    about: document.getElementById('pfAbout').value.trim(),
+    whatsapp: document.getElementById('pfWhatsapp').value.trim(),
+    curLocation: document.getElementById('pfCurLoc').value.trim(),
+    desLocation: document.getElementById('pfDesLoc').value.trim(),
+    marital: document.getElementById('pfMarital').value,
+    linkedin: document.getElementById('pfLinkedin').value.trim(),
+    qualification: document.getElementById('pfQualification').value.trim(),
+    projectsDone: document.getElementById('pfProjects').value.trim(),
+    company: document.getElementById('pfCompany').value.trim(),
+    curSalary: document.getElementById('pfCurSalary').value.trim(),
+    notice: document.getElementById('pfNotice').value.trim(),
+    reason: document.getElementById('pfReason').value.trim(),
+    projectLink: document.getElementById('pfProjectLink').value.trim(),
+    ref1: document.getElementById('pfRef1').value.trim(),
+    ref2: document.getElementById('pfRef2').value.trim(),
+    resumeName: resumeName,
+    ats: ats==='with',
+    saved: true
+  };
+  currentUser.phone = document.getElementById('pfPhone').value.trim();
+  currentUser.name = document.getElementById('pfName').value.trim();
+  document.getElementById('dNameSide').textContent = currentUser.name;
+
+  if(ats==='with'){
+    playThankYou();
+    toast('Profile saved! ₹'+pricing.atsBoost+' ATS service activated — you are now in the hiring pipeline.');
+    candidates.push({name: currentUser.name, role: profiles[currentUser.email].title || 'Job Seeker', stage:0});
+  } else {
+    playClick();
+    toast('Profile saved with standard (free) listing.');
+  }
+  renderTab(currentUser, 'profile');
+  return false;
+}
+
+function freelancerProfilePanel(user){
+  const p = profiles[user.email] || {};
+  const savedBadge = p.saved ? `<div class="profile-saved-badge">✓ Freelancer profile saved</div>` : '';
+  const myOfferings = offerings[user.email] || [];
+  const offerCards = myOfferings.length ? `<div class="offer-grid">${myOfferings.map((o,i)=>`
+    <div class="offer-card">
+      <h4>${o.title}</h4>
+      <p>${o.desc||'No description added.'}</p>
+      <div class="offer-meta">
+        <span class="offer-price">₹${o.price} <span style="color:var(--text-dim);font-weight:400;">/ ${o.delivery||'—'}</span></span>
+        <button class="offer-del" onclick="removeOffering(${i})">Remove</button>
+      </div>
+    </div>`).join('')}</div>` : `<div class="offer-empty">You haven't added any offerings yet. Add your first service below.</div>`;
+
+  return `<div class="panel">
+    <h3>Build Your Freelancer Profile</h3>
+    ${savedBadge}
+    <form class="profile-form" onsubmit="return saveFreelancerProfile(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Full Name</label><input type="text" id="flName" value="${user.name}" required></div>
+        <div class="field"><label>Email</label><input type="email" id="flEmail" value="${user.email}" readonly style="opacity:.7;"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="flPhone" value="${user.phone||''}" required></div>
+        <div class="field"><label>Professional Title</label><input type="text" id="flTitle" value="${p.title||''}" placeholder="e.g. UI/UX Designer" required></div>
+        <div class="field"><label>Experience</label><input type="text" id="flExp" value="${p.exp||''}" placeholder="e.g. 3 years"></div>
+        <div class="field"><label>Portfolio Link</label><input type="text" id="flPortfolio" value="${p.portfolio||''}" placeholder="https://..."></div>
+      </div>
+      <div class="field"><label>Skills</label><input type="text" id="flSkills" value="${p.skills||''}" placeholder="e.g. Figma, Photoshop, Branding"></div>
+      <div class="field"><label>About / Bio</label><textarea id="flAbout" placeholder="Tell employers what you do best...">${p.about||''}</textarea></div>
+      <button class="btn3d" type="submit">Save Profile</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h3>My Offerings</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">List the services you offer, so employers and clients can find and hire you directly.</p>
+    ${offerCards}
+    <form class="profile-form" onsubmit="return addOffering(event)" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px;">
+        <div class="field"><label>Offering Title</label><input type="text" id="ofTitle" placeholder="e.g. Logo Design" required></div>
+        <div class="field"><label>Price (₹)</label><input type="number" id="ofPrice" placeholder="e.g. 1500" min="0" required></div>
+        <div class="field"><label>Delivery Time</label><input type="text" id="ofDelivery" placeholder="e.g. 3 days" required></div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="ofDesc" placeholder="Describe exactly what's included in this offering..."></textarea></div>
+      <button class="btn3d red" type="submit">+ Add Offering</button>
+    </form>
+  </div>`;
+}
+
+function saveFreelancerProfile(e){
+  e.preventDefault();
+  profiles[currentUser.email] = {
+    ...(profiles[currentUser.email]||{}),
+    title: document.getElementById('flTitle').value.trim(),
+    exp: document.getElementById('flExp').value.trim(),
+    portfolio: document.getElementById('flPortfolio').value.trim(),
+    skills: document.getElementById('flSkills').value.trim(),
+    about: document.getElementById('flAbout').value.trim(),
+    saved: true
+  };
+  currentUser.name = document.getElementById('flName').value.trim();
+  currentUser.phone = document.getElementById('flPhone').value.trim();
+  document.getElementById('dNameSide').textContent = currentUser.name;
+  playClick();
+  toast('Freelancer profile saved!');
+  renderTab(currentUser, 'profile');
+  return false;
+}
+
+function addOffering(e){
+  e.preventDefault();
+  const title = document.getElementById('ofTitle').value.trim();
+  const price = document.getElementById('ofPrice').value.trim();
+  const delivery = document.getElementById('ofDelivery').value.trim();
+  const desc = document.getElementById('ofDesc').value.trim();
+  if(!title || !price || !delivery){ return false; }
+  if(!offerings[currentUser.email]) offerings[currentUser.email] = [];
+  offerings[currentUser.email].push({title, price, delivery, desc});
+  playThankYou();
+  toast('Offering added to your profile!');
+  logActivity('<b>'+currentUser.name+'</b> added a new service offering: <b>'+title+'</b>');
+  renderTab(currentUser, 'profile');
+  return false;
+}
+
+function removeOffering(index){
+  offerings[currentUser.email].splice(index,1);
+  playClick();
+  renderTab(currentUser, 'profile');
+}
+
+function employerJobsPanel(user){
+  const myJobs = jobPostings.filter(j=>j.postedBy===user.email);
+  const jobsList = myJobs.length ? myJobs.map((j,i)=>`
+    <div class="job-card">
+      <h4>${j.title} <span class="badge ${j.openStatus==='Closed'?'red':'green'}" style="margin-left:8px;">${j.openStatus==='Closed'?'Closed':'Open'}</span></h4>
+      <div class="job-meta">
+        <span>🏢 ${j.company}${j.department?' · '+j.department:''}</span>
+        <span>📍 ${j.location}</span>
+        <span>🕐 ${j.empType}</span>
+      </div>
+      <p><b style="color:var(--text)">Compensation:</b> ${j.compensation||'—'}</p>
+      <p><b style="color:var(--text)">Summary:</b> ${j.summary||'—'}</p>
+      <p><b style="color:var(--text)">Close hiring within:</b> ${j.closeWithin} &nbsp;|&nbsp; <b style="color:var(--text)">Interview mode:</b> ${j.interviewMode} &nbsp;|&nbsp; <b style="color:var(--text)">Update via:</b> ${j.statusUpdateVia}</p>
+      <p><b style="color:var(--text)">Hiring assistance:</b> ${j.hiringAssist==='custom' ? 'Hiring Assistant Service (Custom Commercial)' : 'Normal Hiring Process (Normal Pricing)'}</p>
+      <div class="job-tags">${(j.bgChecks||[]).map(b=>`<span class="badge gold">${b} Check</span>`).join('')}</div>
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="btn3d small ${j.openStatus==='Closed'?'':'red'}" onclick="toggleJobOpenStatus(${jobPostings.indexOf(j)})">${j.openStatus==='Closed'?'Reopen Hiring':'Close Hiring'}</button>
+        <button class="offer-del" onclick="removeJob(${jobPostings.indexOf(j)})">Remove Posting</button>
+      </div>
+    </div>`).join('') : `<div class="offer-empty">No jobs posted yet. Use the form below to create your first job posting.</div>`;
+
+  return `<div class="panel">
+    <h3>Post a New Job</h3>
+    <form class="profile-form" onsubmit="return postJob(event)">
+      <div class="form-section-label">Role Basics</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Job Title</label><input type="text" id="jbTitle" placeholder="e.g. Sales Manager" required></div>
+        <div class="field"><label>Employment Type</label>
+          <select id="jbEmpType" required>
+            <option value="">Select type</option>
+            <option>Full-time</option><option>Part-time</option><option>Contract</option><option>Temporary</option>
+          </select>
+        </div>
+        <div class="field"><label>Company Name</label><input type="text" id="jbCompany" value="${(profiles[user.email]&&profiles[user.email].company)||''}" placeholder="Your company name" required></div>
+        <div class="field"><label>Department</label><input type="text" id="jbDept" placeholder="e.g. Sales, Engineering"></div>
+        <div class="field"><label>Job Location</label><input type="text" id="jbLocation" placeholder="City, State, or Remote/Hybrid" required></div>
+        <div class="field"><label>Compensation</label><input type="text" id="jbCompensation" placeholder="Salary range, hourly rate or benefits"></div>
+      </div>
+
+      <div class="form-section-label">Role Details</div>
+      <div class="field"><label>Job Summary</label><textarea id="jbSummary" placeholder="A short overview of the role's purpose..."></textarea></div>
+      <div class="field"><label>Key Responsibilities</label><textarea id="jbResponsibilities" placeholder="One responsibility per line — will be shown as a bulleted list"></textarea></div>
+      <div class="field"><label>Requirements &amp; Skills</label><textarea id="jbRequirements" placeholder="Education, experience level, certifications needed..."></textarea></div>
+
+      <div class="form-section-label">Application Process</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Application Instructions</label>
+          <select id="jbAppInstructions">
+            <option value="Updated CV">Updated CV</option>
+          </select>
+        </div>
+        <div class="field"><label>Final Status To Be Updated By</label>
+          <select id="jbStatusUpdate">
+            <option value="Call">Call</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+        </div>
+        <div class="field"><label>Hiring To Be Closed Within</label>
+          <select id="jbCloseWithin">
+            <option>7 Days</option><option>15 Days</option><option>21 Days</option><option>30 Days</option><option>45 Days</option>
+          </select>
+        </div>
+        <div class="field"><label>Interview Mode</label>
+          <select id="jbInterviewMode">
+            <option>Face to Face</option><option>Online</option>
+          </select>
+        </div>
+        <div class="field"><label>Notice Period Accepted</label><input type="text" id="jbNotice" placeholder="e.g. Immediate to 30 days"></div>
+      </div>
+      <div class="field"><label>Special Notes</label><textarea id="jbNotes" placeholder="Any additional notes for candidates or the hiring team..."></textarea></div>
+
+      <div class="form-section-label">Background Verification Level</div>
+      <div class="check-group" id="bgCheckGroup">
+        <label class="check-item"><input type="checkbox" value="Experience"> Experience</label>
+        <label class="check-item"><input type="checkbox" value="Residential"> Residential</label>
+        <label class="check-item"><input type="checkbox" value="Reference"> Reference Check</label>
+        <label class="check-item"><input type="checkbox" value="Educational"> Educational</label>
+        <label class="check-item"><input type="checkbox" value="Police"> Police Verification</label>
+      </div>
+
+      <div class="form-section-label">Hiring Assistance</div>
+      <div class="ats-choice">
+        <div class="ats-option" id="hireOptCustom" onclick="selectHiring('custom')">
+          <span class="ao-check" id="hireCheckCustom"></span>
+          <span class="ao-tag">Managed for you</span>
+          <div class="ao-price">₹${pricing.employerHiringAssistant}+ <small>starting</small></div>
+          <b style="color:var(--text)">Hiring Assistant Service</b>
+          <ul>
+            <li>Dedicated hiring assistant</li>
+            <li>Sourcing, screening &amp; scheduling handled</li>
+            <li>Pricing quoted based on role &amp; volume</li>
+          </ul>
+        </div>
+        <div class="ats-option selected" id="hireOptNormal" onclick="selectHiring('normal')">
+          <span class="ao-check">✓</span>
+          <span class="ao-tag">Self-managed</span>
+          <div class="ao-price">₹${pricing.employerNormalPosting} <small>per posting</small></div>
+          <b style="color:var(--text)">Normal Hiring Process</b>
+          <ul>
+            <li>Standard job listing &amp; ATS pipeline</li>
+            <li>You manage applicants yourself</li>
+            <li>Regular platform pricing applies</li>
+          </ul>
+        </div>
+      </div>
+      <input type="hidden" id="jbHiringAssist" value="normal">
+
+      <button class="btn3d" type="submit">Post Job</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h3>My Job Postings</h3>
+    ${jobsList}
+  </div>`;
+}
+
+function selectHiring(choice){
+  document.getElementById('jbHiringAssist').value = choice;
+  document.getElementById('hireOptCustom').classList.toggle('selected', choice==='custom');
+  document.getElementById('hireOptNormal').classList.toggle('selected', choice==='normal');
+  document.getElementById('hireCheckCustom').textContent = choice==='custom' ? '✓' : '';
+  document.getElementById('hireOptNormal').querySelector('.ao-check').textContent = choice==='normal' ? '✓' : '';
+}
+
+function postJob(e){
+  e.preventDefault();
+  const bgChecks = Array.from(document.querySelectorAll('#bgCheckGroup input:checked')).map(i=>i.value);
+  const job = {
+    title: document.getElementById('jbTitle').value.trim(),
+    empType: document.getElementById('jbEmpType').value,
+    company: document.getElementById('jbCompany').value.trim(),
+    department: document.getElementById('jbDept').value.trim(),
+    location: document.getElementById('jbLocation').value.trim(),
+    compensation: document.getElementById('jbCompensation').value.trim(),
+    summary: document.getElementById('jbSummary').value.trim(),
+    responsibilities: document.getElementById('jbResponsibilities').value.trim(),
+    requirements: document.getElementById('jbRequirements').value.trim(),
+    appInstructions: document.getElementById('jbAppInstructions').value,
+    statusUpdateVia: document.getElementById('jbStatusUpdate').value,
+    closeWithin: document.getElementById('jbCloseWithin').value,
+    interviewMode: document.getElementById('jbInterviewMode').value,
+    notice: document.getElementById('jbNotice').value.trim(),
+    notes: document.getElementById('jbNotes').value.trim(),
+    bgChecks: bgChecks,
+    hiringAssist: document.getElementById('jbHiringAssist').value,
+    postedBy: currentUser.email,
+    openStatus: 'Open'
+  };
+  if(!job.title || !job.empType || !job.company || !job.location){
+    alert('Please fill Job Title, Employment Type, Company Name and Job Location.');
+    return false;
+  }
+  jobPostings.push(job);
+  playThankYou();
+  toast('Job posted: '+job.title+(job.hiringAssist==='custom' ? ' — Hiring Assistant Service requested' : ''));
+  logActivity('Employer <b>'+currentUser.name+'</b> posted a new job: <b>'+job.title+'</b>');
+  renderTab(currentUser, 'jobs');
+  return false;
+}
+
+function removeJob(index){
+  jobPostings.splice(index,1);
+  playClick();
+  renderTab(currentUser, 'jobs');
+}
+
+function toggleJobOpenStatus(idx){
+  const j = jobPostings[idx];
+  if(!j) return;
+  j.openStatus = j.openStatus==='Closed' ? 'Open' : 'Closed';
+  playClick();
+  toast(j.openStatus==='Closed' ? 'Hiring closed for '+j.title+'.' : 'Hiring reopened for '+j.title+'.');
+  logActivity((j.openStatus==='Closed' ? 'Closed hiring for ' : 'Reopened hiring for ')+'<b>'+j.title+'</b>');
+  renderTab(currentUser, 'jobs');
+}
+
+/* ============ JOB SEEKER: Profile / CV / Review modals ============ */
+function openJobseekerProfileModal(email){
+  const u = users.find(x=>x.email===email);
+  const p = profiles[email] || {};
+  const html = `
+    <div class="admin-item-card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="field"><label>Desired Job Title</label><input id="mJsTitle" value="${p.title||''}"></div>
+        <div class="field"><label>Total Experience</label><input id="mJsExp" value="${p.exp||''}"></div>
+        <div class="field"><label>Qualification</label><input id="mJsQual" value="${p.qualification||''}"></div>
+        <div class="field"><label>Current Company</label><input id="mJsCompany" value="${p.company||''}"></div>
+        <div class="field"><label>Current Location</label><input id="mJsCurLoc" value="${p.curLocation||''}"></div>
+        <div class="field"><label>Desired Location</label><input id="mJsDesLoc" value="${p.desLocation||''}"></div>
+        <div class="field"><label>Expected Salary</label><input id="mJsSalary" value="${p.salary||''}"></div>
+        <div class="field"><label>Notice Period</label><input id="mJsNotice" value="${p.notice||''}"></div>
+      </div>
+      <div class="field"><label>Key Skills</label><input id="mJsSkills" value="${p.skills||''}"></div>
+      <div class="field"><label>About / Summary</label><textarea id="mJsAbout">${p.about||''}</textarea></div>
+      <button class="btn3d small" onclick="saveJobseekerProfileAdmin('${email}')">Save Changes</button>
+    </div>`;
+  openModal('Profile — '+u.name, html);
+}
+function saveJobseekerProfileAdmin(email){
+  if(!profiles[email]) profiles[email] = {};
+  Object.assign(profiles[email], {
+    title: document.getElementById('mJsTitle').value.trim(),
+    exp: document.getElementById('mJsExp').value.trim(),
+    qualification: document.getElementById('mJsQual').value.trim(),
+    company: document.getElementById('mJsCompany').value.trim(),
+    curLocation: document.getElementById('mJsCurLoc').value.trim(),
+    desLocation: document.getElementById('mJsDesLoc').value.trim(),
+    salary: document.getElementById('mJsSalary').value.trim(),
+    notice: document.getElementById('mJsNotice').value.trim(),
+    skills: document.getElementById('mJsSkills').value.trim(),
+    about: document.getElementById('mJsAbout').value.trim(),
+    saved: true
+  });
+  playClick();
+  toast('Profile updated.');
+  closeModal();
+  renderTab(currentUser, 'db-jobseeker');
+}
+
+function openCvModal(email){
+  const u = users.find(x=>x.email===email);
+  const p = profiles[email] || {};
+  const html = `
+    <div class="admin-item-card">
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:14px;">${p.resumeName ? 'Current file on record: <b style="color:var(--gold-light)">'+p.resumeName+'</b>' : 'No resume uploaded yet.'}</p>
+      <div class="field"><label>Replace / Upload Resume (PDF / DOC / DOCX)</label>
+        <div class="resume-drop" id="mCvDrop">
+          <input type="file" id="mCvFile" accept=".pdf,.doc,.docx" onchange="handleModalCvChange(this)">
+          <div class="rd-title">📄 Click or drop a resume file</div>
+          <div class="rd-sub">Max size 5MB</div>
+          <div class="rd-file" id="mCvFileName"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        ${p.resumeName ? `<button class="btn3d small" onclick="viewResume('${email}')">View / Download</button>` : ''}
+        <button class="btn3d small dark" onclick="saveCvAdmin('${email}')">Save New File</button>
+        ${p.resumeName ? `<button class="btn3d small red" onclick="removeCvAdmin('${email}')">Remove CV</button>` : ''}
+      </div>
+    </div>`;
+  openModal('CV — '+u.name, html);
+}
+function handleModalCvChange(input){
+  const label = document.getElementById('mCvFileName');
+  if(input.files && input.files[0]){
+    if(input.files[0].size > 5*1024*1024){ label.textContent='File too large — max 5MB'; input.value=''; return; }
+    label.textContent = 'Selected: '+input.files[0].name;
+  }
+}
+function saveCvAdmin(email){
+  const input = document.getElementById('mCvFile');
+  if(input.files && input.files[0]){
+    if(!profiles[email]) profiles[email] = {};
+    profiles[email].resumeName = input.files[0].name;
+    resumeFiles[email] = input.files[0];
+    playClick();
+    toast('CV updated.');
+  }
+  closeModal();
+  renderTab(currentUser, 'db-jobseeker');
+}
+function removeCvAdmin(email){
+  if(profiles[email]) profiles[email].resumeName = '';
+  playClick();
+  toast('CV removed.');
+  closeModal();
+  renderTab(currentUser, 'db-jobseeker');
+}
+
+function setReviewStatus(email, status){
+  if(!profiles[email]) profiles[email] = {};
+  profiles[email].reviewStatus = status;
+  playClick();
+  toast('Job seeker profile '+status.toLowerCase()+'.');
+  renderTab(currentUser, 'db-jobseeker');
+}
+
+/* ============ EMPLOYER: Job Postings / Category / Review modal ============ */
+const jobCategories = ['IT & Software','Sales & Marketing','Operations','Finance & Accounts','HR & Admin','Manufacturing','Healthcare','Other'];
+
+function openEmployerPostingsModal(email){
+  const u = users.find(x=>x.email===email);
+  const items = jobPostings.filter(j=>j.postedBy===email);
+  const cards = items.map(item=>{
+    const idx = jobPostings.indexOf(item);
+    return `<div class="admin-item-card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="field"><label>Job Title</label><input id="mJpTitle_${idx}" value="${item.title||''}"></div>
+        <div class="field"><label>Location</label><input id="mJpLocation_${idx}" value="${item.location||''}"></div>
+        <div class="field"><label>Compensation</label><input id="mJpComp_${idx}" value="${item.compensation||''}"></div>
+        <div class="field"><label>Employment Type</label><input id="mJpEmpType_${idx}" value="${item.empType||''}"></div>
+      </div>
+      <div class="field"><label>Job Summary</label><textarea id="mJpSummary_${idx}">${item.summary||''}</textarea></div>
+      <button class="btn3d small" onclick="saveJobPostingEdit(${idx})">Save Changes</button>
+
+      <div class="cat-row">
+        <div class="field"><label>Category</label>
+          <select id="mJpCat_${idx}">
+            <option value="">Select category</option>
+            ${jobCategories.map(c=>`<option ${item.category===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn3d small dark" onclick="saveJobPostingCategory(${idx})">Save Category</button>
+      </div>
+
+      <div class="review-row">
+        ${statusBadge(item.status)}
+        <button class="btn3d small" onclick="setJobPostingStatus(${idx},'Published')">Publish</button>
+        <button class="btn3d small red" onclick="setJobPostingStatus(${idx},'Rejected')">Reject</button>
+      </div>
+    </div>`;
+  }).join('');
+  openModal('Job Postings — '+u.name, cards || '<div class="no-items">This employer has not posted any jobs yet.</div>');
+}
+function saveJobPostingEdit(idx){
+  const j = jobPostings[idx]; if(!j) return;
+  j.title = document.getElementById('mJpTitle_'+idx).value.trim();
+  j.location = document.getElementById('mJpLocation_'+idx).value.trim();
+  j.compensation = document.getElementById('mJpComp_'+idx).value.trim();
+  j.empType = document.getElementById('mJpEmpType_'+idx).value.trim();
+  j.summary = document.getElementById('mJpSummary_'+idx).value.trim();
+  playClick(); toast('Job posting updated.');
+  openEmployerPostingsModal(j.postedBy);
+}
+function saveJobPostingCategory(idx){
+  const j = jobPostings[idx]; if(!j) return;
+  j.category = document.getElementById('mJpCat_'+idx).value;
+  playClick(); toast('Category saved: '+(j.category||'—'));
+  openEmployerPostingsModal(j.postedBy);
+}
+function setJobPostingStatus(idx, status){
+  const j = jobPostings[idx]; if(!j) return;
+  j.status = status;
+  playClick(); toast('Job posting '+status.toLowerCase()+'.');
+  openEmployerPostingsModal(j.postedBy);
+}
+
+/* ============ FREELANCER: Offerings / Category / Review modal ============ */
+const serviceCategories = ['Design & Creative','Writing & Translation','Web & Software Development','Digital Marketing','Admin Support','Video & Animation','Other'];
+
+function openFreelancerOfferingsModal(email){
+  const u = users.find(x=>x.email===email);
+  const items = offerings[email] || [];
+  const cards = items.map((o,idx)=>`
+    <div class="admin-item-card">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;">
+        <div class="field"><label>Offering Title</label><input id="mOfTitle_${idx}" value="${o.title||''}"></div>
+        <div class="field"><label>Price (₹)</label><input id="mOfPrice_${idx}" value="${o.price||''}"></div>
+        <div class="field"><label>Delivery Time</label><input id="mOfDelivery_${idx}" value="${o.delivery||''}"></div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="mOfDesc_${idx}">${o.desc||''}</textarea></div>
+      <button class="btn3d small" onclick="saveOfferingEdit('${email}',${idx})">Save Changes</button>
+
+      <div class="cat-row">
+        <div class="field"><label>Category</label>
+          <select id="mOfCat_${idx}">
+            <option value="">Select category</option>
+            ${serviceCategories.map(c=>`<option ${o.category===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn3d small dark" onclick="saveOfferingCategory('${email}',${idx})">Save Category</button>
+      </div>
+
+      <div class="review-row">
+        ${statusBadge(o.status)}
+        <button class="btn3d small" onclick="setOfferingStatus('${email}',${idx},'Published')">Publish</button>
+        <button class="btn3d small red" onclick="setOfferingStatus('${email}',${idx},'Rejected')">Reject</button>
+      </div>
+    </div>`).join('');
+  openModal('Services Offered — '+u.name, cards || '<div class="no-items">This freelancer has not added any offerings yet.</div>');
+}
+function saveOfferingEdit(email, idx){
+  const o = (offerings[email]||[])[idx]; if(!o) return;
+  o.title = document.getElementById('mOfTitle_'+idx).value.trim();
+  o.price = document.getElementById('mOfPrice_'+idx).value.trim();
+  o.delivery = document.getElementById('mOfDelivery_'+idx).value.trim();
+  o.desc = document.getElementById('mOfDesc_'+idx).value.trim();
+  playClick(); toast('Offering updated.');
+  openFreelancerOfferingsModal(email);
+}
+function saveOfferingCategory(email, idx){
+  const o = (offerings[email]||[])[idx]; if(!o) return;
+  o.category = document.getElementById('mOfCat_'+idx).value;
+  playClick(); toast('Category saved: '+(o.category||'—'));
+  openFreelancerOfferingsModal(email);
+}
+function setOfferingStatus(email, idx, status){
+  const o = (offerings[email]||[])[idx]; if(!o) return;
+  o.status = status;
+  playClick(); toast('Offering '+status.toLowerCase()+'.');
+  openFreelancerOfferingsModal(email);
+}
+
+/* ============ TRAINER: Courses / Category / Review modal ============ */
+const courseCategories = ['Technical Skills','Soft Skills','Language','Certification Prep','Vocational Training','Other'];
+
+function openTrainerCoursesModal(email){
+  const u = users.find(x=>x.email===email);
+  const items = courses[email] || [];
+  const cards = items.map((co,idx)=>`
+    <div class="admin-item-card">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;">
+        <div class="field"><label>Course Title</label><input id="mCoTitle_${idx}" value="${co.title||''}"></div>
+        <div class="field"><label>Fee (₹)</label><input id="mCoPrice_${idx}" value="${co.price||''}"></div>
+        <div class="field"><label>Duration</label><input id="mCoDuration_${idx}" value="${co.duration||''}"></div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="mCoDesc_${idx}">${co.desc||''}</textarea></div>
+      <button class="btn3d small" onclick="saveCourseEdit('${email}',${idx})">Save Changes</button>
+
+      <div class="cat-row">
+        <div class="field"><label>Category</label>
+          <select id="mCoCat_${idx}">
+            <option value="">Select category</option>
+            ${courseCategories.map(c=>`<option ${co.category===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn3d small dark" onclick="saveCourseCategory('${email}',${idx})">Save Category</button>
+      </div>
+
+      <div class="review-row">
+        ${statusBadge(co.status)}
+        <button class="btn3d small" onclick="setCourseStatus('${email}',${idx},'Published')">Publish</button>
+        <button class="btn3d small red" onclick="setCourseStatus('${email}',${idx},'Rejected')">Reject</button>
+      </div>
+    </div>`).join('');
+  const addForm = `
+    <div class="admin-item-card">
+      <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:10px;">Add a course on behalf of this trainer.</p>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;">
+        <div class="field"><label>Course Title</label><input id="mNewCoTitle" placeholder="e.g. Advanced Excel"></div>
+        <div class="field"><label>Fee (₹)</label><input id="mNewCoPrice" placeholder="e.g. 2500"></div>
+        <div class="field"><label>Duration</label><input id="mNewCoDuration" placeholder="e.g. 4 weeks"></div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="mNewCoDesc" placeholder="What this course covers..."></textarea></div>
+      <button class="btn3d small red" onclick="adminAddCourse('${email}')">+ Add Course</button>
+    </div>`;
+  openModal('Courses Offered — '+u.name, (cards || '<div class="no-items">No courses added yet.</div>') + addForm);
+}
+function saveCourseEdit(email, idx){
+  const co = (courses[email]||[])[idx]; if(!co) return;
+  co.title = document.getElementById('mCoTitle_'+idx).value.trim();
+  co.price = document.getElementById('mCoPrice_'+idx).value.trim();
+  co.duration = document.getElementById('mCoDuration_'+idx).value.trim();
+  co.desc = document.getElementById('mCoDesc_'+idx).value.trim();
+  playClick(); toast('Course updated.');
+  openTrainerCoursesModal(email);
+}
+function saveCourseCategory(email, idx){
+  const co = (courses[email]||[])[idx]; if(!co) return;
+  co.category = document.getElementById('mCoCat_'+idx).value;
+  playClick(); toast('Category saved: '+(co.category||'—'));
+  openTrainerCoursesModal(email);
+}
+function setCourseStatus(email, idx, status){
+  const co = (courses[email]||[])[idx]; if(!co) return;
+  co.status = status;
+  playClick(); toast('Course '+status.toLowerCase()+'.');
+  openTrainerCoursesModal(email);
+}
+function adminAddCourse(email){
+  const title = document.getElementById('mNewCoTitle').value.trim();
+  const price = document.getElementById('mNewCoPrice').value.trim();
+  const duration = document.getElementById('mNewCoDuration').value.trim();
+  const desc = document.getElementById('mNewCoDesc').value.trim();
+  if(!title || !price || !duration) return;
+  if(!courses[email]) courses[email] = [];
+  courses[email].push({title, price, duration, desc, category:'', status:'Pending'});
+  playThankYou();
+  toast('Course added.');
+  openTrainerCoursesModal(email);
+}
+
+/* ============ MANPOWER CONTRACTORS: Details modal ============ */
+const manpowerRoleOptions = ['Skilled Labour','Unskilled Labour','Security Guard','Housekeeping Staff','Driver','Technician','Supervisor','Other'];
+
+function openManpowerDetailsModal(email){
+  const u = users.find(x=>x.email===email);
+  const d = manpowerDetails[email] || {};
+  const roles = d.roles || [];
+  const html = `
+    <div class="admin-item-card">
+      <div class="field"><label>Role(s) of Manpower (select one or multiple)</label>
+        <div class="check-group" id="mMpRoles">
+          ${manpowerRoleOptions.map(r=>`<label class="check-item ${roles.includes(r)?'on':''}"><input type="checkbox" value="${r}" ${roles.includes(r)?'checked':''}> ${r}</label>`).join('')}
+        </div>
+      </div>
+      <div class="field"><label>Location (with full address)</label><textarea id="mMpLocation" placeholder="Full site / office address">${d.locationAddress||''}</textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="field"><label>Contact Person Name</label><input id="mMpContactName" value="${d.contactName||''}"></div>
+        <div class="field"><label>Contact Number</label><input id="mMpContactNumber" value="${d.contactNumber||''}"></div>
+      </div>
+      <div class="field"><label>Timeline / Contract Period</label><input id="mMpTimeline" value="${d.timeline||''}" placeholder="e.g. 6 months, Jan–Jun 2027"></div>
+      <button class="btn3d small" onclick="saveManpowerDetails('${email}')">Save Details</button>
+    </div>`;
+  openModal('Manpower Details — '+u.name, html);
+}
+document.addEventListener('change', function(e){
+  if(e.target.closest('#mMpRoles')){
+    e.target.closest('.check-item').classList.toggle('on', e.target.checked);
+  }
+});
+function saveManpowerDetails(email){
+  const checked = Array.from(document.querySelectorAll('#mMpRoles input:checked')).map(i=>i.value);
+  manpowerDetails[email] = {
+    roles: checked,
+    locationAddress: document.getElementById('mMpLocation').value.trim(),
+    contactName: document.getElementById('mMpContactName').value.trim(),
+    contactNumber: document.getElementById('mMpContactNumber').value.trim(),
+    timeline: document.getElementById('mMpTimeline').value.trim()
+  };
+  playClick();
+  toast('Manpower details saved.');
+  closeModal();
+  renderTab(currentUser, 'db-manpower-contractor');
+}
+
+/* ============ PUBLIC: Job Search & Hire Freelancer ============ */
+function renderPublicJobs(filters){
+  filters = filters || {};
+  const title = (filters.title||'').trim().toLowerCase();
+  const location = (filters.location||'').trim().toLowerCase();
+  const salary = (filters.salary||'').trim().toLowerCase();
+  const skill = (filters.skill||'').trim().toLowerCase();
+  const el = document.getElementById('jobSearchResults');
+  if(!el) return;
+  const list = jobPostings.filter(j=>{
+    if(j.status !== 'Published') return false;
+    if(title && !j.title.toLowerCase().includes(title)) return false;
+    if(location && !(j.location||'').toLowerCase().includes(location)) return false;
+    if(salary && !(j.compensation||'').toLowerCase().includes(salary)) return false;
+    if(skill && !(j.requirements||'').toLowerCase().includes(skill)) return false;
+    return true;
+  });
+  el.innerHTML = list.length ? list.map(j=>`
+    <div class="public-card">
+      <h4>${j.title}</h4>
+      <div class="pc-meta">🏢 ${j.company}${j.department?' · '+j.department:''}<br>📍 ${j.location} &nbsp;|&nbsp; 🕐 ${j.empType}${j.category?' &nbsp;|&nbsp; 🏷️ '+j.category:''}</div>
+      <p>${j.summary||''}</p>
+      <div class="pc-price">${j.compensation||'Compensation on request'}</div>
+      <button class="btn3d small" onclick="ctaApplyJob()">Login &amp; Apply Now</button>
+    </div>`).join('') : `<div class="public-empty">No published jobs match your search yet. Check back soon, or <a onclick="openCard('register')" style="color:var(--green);cursor:pointer;font-weight:700;">register as an employer</a> to post one.</div>`;
+}
+function runAdvancedJobSearch(){
+  renderPublicJobs({
+    title: document.getElementById('advJobTitle') ? document.getElementById('advJobTitle').value : '',
+    location: document.getElementById('advJobLocation') ? document.getElementById('advJobLocation').value : '',
+    salary: document.getElementById('advJobSalary') ? document.getElementById('advJobSalary').value : '',
+    skill: document.getElementById('advJobSkill') ? document.getElementById('advJobSkill').value : ''
+  });
+}
+function ctaApplyJob(){
+  toast('Please login or register as a Job Seeker to apply.');
+  openCard('register');
+}
+
+function renderPublicFreelancers(filter){
+  filter = (filter||'').trim().toLowerCase();
+  const el = document.getElementById('freelancerSearchResults');
+  if(!el) return;
+  let list = [];
+  Object.keys(offerings).forEach(email=>{
+    (offerings[email]||[]).forEach((o,idx)=>{
+      if(o.status !== 'Published') return;
+      const u = users.find(x=>x.email===email);
+      const hay = (o.title+' '+(o.category||'')+' '+(u?u.name:'')).toLowerCase();
+      if(filter && !hay.includes(filter)) return;
+      list.push({...o, freelancerName: u ? u.name : 'Freelancer'});
+    });
+  });
+  el.innerHTML = list.length ? list.map(o=>`
+    <div class="public-card">
+      <h4>${o.title}</h4>
+      <div class="pc-meta">👤 ${o.freelancerName}${o.category?' &nbsp;|&nbsp; 🏷️ '+o.category:''} &nbsp;|&nbsp; ⏱ ${o.delivery||'—'}</div>
+      <p>${o.desc||'No description added.'}</p>
+      <div class="pc-price">₹${o.price}</div>
+      <button class="btn3d small red" onclick="ctaHireFreelancer()">Hire Now</button>
+    </div>`).join('') : `<div class="public-empty">No published freelancer services match your search yet. Check back soon, or <a onclick="openCard('register')" style="color:var(--green);cursor:pointer;font-weight:700;">register as a freelancer</a> to list yours.</div>`;
+}
+function ctaHireFreelancer(){
+  toast('Please login or register as an Employer to hire this freelancer.');
+  openCard('register');
+}
+renderPublicJobs({});
+renderPublicFreelancers('');
+applySiteSettings();
+
+/* ============ JOB SEEKER: Job Search (easy apply) ============ */
+function jobSeekerJobSearchPanel(user){
+  return `<div class="panel">
+    <h3>Search &amp; Apply</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:16px;">Browse admin-approved openings and apply in one click — no forms, no re-typing.</p>
+    <div class="search-bar" style="margin:0 0 20px;max-width:100%;">
+      <input type="text" id="dashJobSearchInput" placeholder="Search by job title, company or location..." oninput="renderDashJobResults(this.value)">
+      <button class="btn3d small" onclick="renderDashJobResults(document.getElementById('dashJobSearchInput').value)">Search</button>
+    </div>
+    <div id="dashJobSearchResults" class="public-results"></div>
+  </div>`;
+}
+function renderDashJobResults(filter){
+  filter = (filter||'').trim().toLowerCase();
+  const el = document.getElementById('dashJobSearchResults');
+  if(!el) return;
+  const list = jobPostings.filter(j=> j.status==='Published' && (!filter || (j.title+' '+j.company+' '+j.location).toLowerCase().includes(filter)));
+  const myApps = applications[currentUser.email] || [];
+  el.innerHTML = list.length ? list.map(j=>{
+    const idx = jobPostings.indexOf(j);
+    const applied = myApps.some(a=>a.jobIdx===idx);
+    return `<div class="public-card">
+      <h4>${j.title}</h4>
+      <div class="pc-meta">🏢 ${j.company}${j.department?' · '+j.department:''}<br>📍 ${j.location} &nbsp;|&nbsp; 🕐 ${j.empType}${j.category?' &nbsp;|&nbsp; 🏷️ '+j.category:''}</div>
+      <p>${j.summary||''}</p>
+      <div class="pc-price">${j.compensation||'Compensation on request'}</div>
+      <button class="btn3d small" ${applied?'disabled':''} onclick="applyToJob(${idx})">${applied?'✓ Applied':'Apply Now'}</button>
+    </div>`;
+  }).join('') : `<div class="public-empty">No published jobs match your search right now. Check back soon!</div>`;
+}
+function applyToJob(idx){
+  const job = jobPostings[idx];
+  if(!job) return;
+  if(!applications[currentUser.email]) applications[currentUser.email] = [];
+  if(applications[currentUser.email].some(a=>a.jobIdx===idx)){ toast('You have already applied to this job.'); return; }
+  applications[currentUser.email].push({jobIdx: idx, status:'Pending'});
+  playApplyThankYou();
+  toast('Thank you for applying! Your profile is under review — track it in My Applications.');
+  logActivity('<b>'+currentUser.name+'</b> applied for <b>'+job.title+'</b> at '+job.company);
+  renderDashJobResults(document.getElementById('dashJobSearchInput') ? document.getElementById('dashJobSearchInput').value : '');
+}
+
+/* ============ JOB SEEKER: My Applications ============ */
+function jobSeekerApplicationsPanel(user){
+  const apps = applications[user.email] || [];
+  const rows = apps.map(a=>{
+    const j = jobPostings[a.jobIdx];
+    if(!j) return '';
+    return `<tr><td>${j.title}</td><td>${j.company}</td><td>${j.location}</td><td>${appStatusBadge(a.status)}</td></tr>`;
+  }).join('');
+  return `<div class="panel"><h3>My Applications</h3>
+  <table><tr><th>Job Title</th><th>Company</th><th>Location</th><th>Status</th></tr>
+  ${rows || `<tr><td colspan="4" style="color:var(--text-dim);">You haven't applied to any jobs yet. Use Job Search to apply.</td></tr>`}
+  </table></div>`;
+}
+function appStatusBadge(status){
+  if(status==='Rejected') return '<span class="badge red">Rejected</span>';
+  if(status==='Pending' || !status) return '<span class="badge gold">Pending Review</span>';
+  if(status==='Hired') return '<span class="badge green">Hired</span>';
+  return '<span class="badge green">'+status+'</span>';
+}
+
+/* ============ EMPLOYER: Applications Received ============ */
+function employerApplicationsPanel(user){
+  const myJobIdx = jobPostings.map((j,i)=>i).filter(i=>jobPostings[i].postedBy===user.email);
+  let rows = [];
+  Object.keys(applications).forEach(email=>{
+    (applications[email]||[]).forEach(a=>{
+      if(myJobIdx.includes(a.jobIdx)){
+        rows.push({email, app:a});
+      }
+    });
+  });
+  const tableRows = rows.map(r=>{
+    const seeker = users.find(u=>u.email===r.email);
+    const job = jobPostings[r.app.jobIdx];
+    const p = profiles[r.email] || {};
+    const resumeCell = p.resumeName
+      ? `<button class="btn3d small" onclick="viewResume('${r.email}')">View / Download</button>`
+      : `<span style="color:var(--text-dim);font-size:11px;">Not uploaded</span>`;
+    return `<tr>
+      <td>${seeker?seeker.name:'—'}</td>
+      <td>${seeker?(seeker.phone||'—'):'—'}</td>
+      <td>${p.notice||'—'}</td>
+      <td>${p.exp||'—'}</td>
+      <td style="color:var(--text-dim);font-size:12px;">${job?job.title:'—'}</td>
+      <td><button class="btn3d small dark" onclick="viewCandidateProfileReadonly('${r.email}')">View Profile</button></td>
+      <td>${resumeCell}</td>
+      <td>
+        ${appStatusBadge(r.app.status)}
+        <div style="margin-top:6px;display:flex;gap:6px;">
+          <button class="btn3d small" ${r.app.status==='Shortlisted'?'disabled':''} onclick="shortlistApplication('${r.email}',${r.app.jobIdx})">Shortlist</button>
+          <button class="btn3d small red" ${r.app.status==='Rejected'?'disabled':''} onclick="rejectApplication('${r.email}',${r.app.jobIdx})">Reject</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+  return `<div class="panel">
+    <h3>Applications Received</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">${rows.length} application${rows.length===1?'':'s'} across your job postings. Shortlist a candidate to move them into the ATS Pipeline.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Applicant Name</th><th>Contact Number</th><th>Notice Period</th><th>Total Experience</th><th>Applied For</th><th>Candidate Profile</th><th>Resume</th><th>Review</th></tr>
+      ${tableRows || `<tr><td colspan="8" style="color:var(--text-dim);">No applications received yet.</td></tr>`}
+    </table>
+    </div>
+  </div>`;
+}
+
+function shortlistApplication(email, jobIdx){
+  const app = (applications[email]||[]).find(a=>a.jobIdx===jobIdx);
+  if(!app) return;
+  app.status = 'Shortlisted';
+  const already = candidates.some(c=>c.applicantEmail===email && c.jobIdx===jobIdx);
+  const seeker = users.find(u=>u.email===email);
+  const job = jobPostings[jobIdx];
+  if(!already){
+    candidates.push({name: seeker?seeker.name:email, role: job?job.title:'Applicant', stage:0, applicantEmail:email, jobIdx:jobIdx});
+  }
+  playThankYou();
+  toast('Candidate shortlisted and added to the ATS pipeline.');
+  logActivity('<b>'+(seeker?seeker.name:email)+'</b> shortlisted for <b>'+(job?job.title:'a role')+'</b>');
+  renderTab(currentUser, 'applications');
+}
+
+function rejectApplication(email, jobIdx){
+  const app = (applications[email]||[]).find(a=>a.jobIdx===jobIdx);
+  if(!app) return;
+  app.status = 'Rejected';
+  candidates = candidates.filter(c=>!(c.applicantEmail===email && c.jobIdx===jobIdx));
+  const seeker = users.find(u=>u.email===email);
+  const job = jobPostings[jobIdx];
+  playClick();
+  toast('Candidate rejected.');
+  logActivity('<b>'+(seeker?seeker.name:email)+'</b> rejected for <b>'+(job?job.title:'a role')+'</b>');
+  renderTab(currentUser, 'applications');
+}
+
+function viewCandidateProfileReadonly(email){
+  const u = users.find(x=>x.email===email);
+  const p = profiles[email] || {};
+  const html = `<div class="admin-item-card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;color:var(--text);">
+      <div><b style="color:var(--gold-light)">Desired Title:</b> ${p.title||'—'}</div>
+      <div><b style="color:var(--gold-light)">Experience:</b> ${p.exp||'—'}</div>
+      <div><b style="color:var(--gold-light)">Qualification:</b> ${p.qualification||'—'}</div>
+      <div><b style="color:var(--gold-light)">Current Company:</b> ${p.company||'—'}</div>
+      <div><b style="color:var(--gold-light)">Current Location:</b> ${p.curLocation||'—'}</div>
+      <div><b style="color:var(--gold-light)">Desired Location:</b> ${p.desLocation||'—'}</div>
+      <div><b style="color:var(--gold-light)">Expected Salary:</b> ${p.salary||'—'}</div>
+      <div><b style="color:var(--gold-light)">Notice Period:</b> ${p.notice||'—'}</div>
+      <div><b style="color:var(--gold-light)">LinkedIn:</b> ${p.linkedin||'—'}</div>
+      <div><b style="color:var(--gold-light)">Project Link:</b> ${p.projectLink||'—'}</div>
+    </div>
+    <div style="margin-top:12px;"><b style="color:var(--gold-light)">Skills:</b> ${p.skills||'—'}</div>
+    <div style="margin-top:8px;"><b style="color:var(--gold-light)">About:</b> ${p.about||'—'}</div>
+  </div>`;
+  openModal('Candidate Profile — '+(u?u.name:email), html);
+}
+
+function viewResume(email){
+  const file = resumeFiles[email];
+  if(!file){
+    const name = (profiles[email] && profiles[email].resumeName) || 'No file on record';
+    alert('Resume preview isn\'t available in this browser session (demo storage resets on refresh). File on record: '+name);
+    return;
+  }
+  const url = URL.createObjectURL(file);
+  const a = document.createElement('a');
+  a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.download = file.name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 30000);
+}
+
+/* ============ MANPOWER: Workforce Pool ============ */
+function workforcePoolPanel(user){
+  const pool = workforcePool[user.email] || [];
+  const cards = pool.map((w,idx)=>`
+    <div class="offer-card">
+      <h4>${w.roleType}</h4>
+      <p>Skill Level: ${w.skillLevel||'—'} &nbsp;|&nbsp; Experience: ${w.experience||'—'}</p>
+      <div class="offer-meta">
+        <span class="offer-price">${w.count} worker${w.count==1?'':'s'}</span>
+        <span class="badge ${w.available?'green':'gold'}" style="cursor:pointer;" onclick="toggleWorkforceAvailability(${idx})">${w.available?'Available':'Deployed'}</span>
+      </div>
+      <div style="margin-top:10px;"><button class="offer-del" onclick="removeWorkforceEntry(${idx})">Remove</button></div>
+    </div>`).join('');
+  return `<div class="panel">
+    <h3>Workforce Pool</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Maintain your roster by role and skill. Click the status badge to toggle availability as workers are deployed or freed up.</p>
+    <div class="offer-grid">${cards || '<div class="offer-empty">No workforce added yet. Use the form below to build your pool.</div>'}</div>
+    <form class="profile-form" onsubmit="return addWorkforceEntry(event)" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:16px;">
+        <div class="field"><label>Role / Trade</label><input type="text" id="wfRole" placeholder="e.g. Electrician" required></div>
+        <div class="field"><label>Skill Level</label>
+          <select id="wfSkill"><option>Skilled</option><option>Semi-Skilled</option><option>Unskilled</option></select>
+        </div>
+        <div class="field"><label>Experience</label><input type="text" id="wfExp" placeholder="e.g. 3+ years"></div>
+        <div class="field"><label>Count Available</label><input type="number" id="wfCount" min="1" placeholder="e.g. 10" required></div>
+      </div>
+      <button class="btn3d red" type="submit">+ Add to Pool</button>
+    </form>
+  </div>`;
+}
+function addWorkforceEntry(e){
+  e.preventDefault();
+  const roleType = document.getElementById('wfRole').value.trim();
+  const skillLevel = document.getElementById('wfSkill').value;
+  const experience = document.getElementById('wfExp').value.trim();
+  const count = document.getElementById('wfCount').value.trim();
+  if(!roleType || !count) return false;
+  if(!workforcePool[currentUser.email]) workforcePool[currentUser.email] = [];
+  workforcePool[currentUser.email].push({roleType, skillLevel, experience, count, available:true});
+  playThankYou();
+  toast('Added to workforce pool.');
+  renderTab(currentUser, 'pool');
+  return false;
+}
+function toggleWorkforceAvailability(idx){
+  const pool = workforcePool[currentUser.email];
+  if(!pool || !pool[idx]) return;
+  pool[idx].available = !pool[idx].available;
+  playClick();
+  renderTab(currentUser, activeTab);
+}
+function removeWorkforceEntry(idx){
+  const pool = workforcePool[currentUser.email];
+  if(!pool) return;
+  pool.splice(idx,1);
+  playClick();
+  renderTab(currentUser, activeTab);
+}
+
+/* ============ MANPOWER: Available Manpower List ============ */
+function availableManpowerPanel(user){
+  const pool = workforcePool[user.email] || [];
+  const availableEntries = pool.map((w,idx)=>({w,idx})).filter(x=>x.w.available);
+  const cards = availableEntries.map(({w,idx})=>`
+    <div class="offer-card">
+      <h4>${w.roleType}</h4>
+      <p>Skill Level: ${w.skillLevel||'—'} &nbsp;|&nbsp; Experience: ${w.experience||'—'}</p>
+      <div class="offer-meta">
+        <span class="offer-price">${w.count} ready now</span>
+        <button class="offer-del" onclick="toggleWorkforceAvailability(${idx})">Mark Deployed</button>
+      </div>
+    </div>`).join('');
+  return `<div class="panel">
+    <h3>Available Manpower List</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Workforce currently marked available for immediate deployment.</p>
+    <div class="offer-grid">${cards || '<div class="offer-empty">No manpower currently available. Update your Workforce Pool.</div>'}</div>
+  </div>`;
+}
+
+/* ============ MANPOWER: Deployment Requests ============ */
+function deploymentRequestsPanel(user){
+  const reqs = deploymentRequests[user.email] || [];
+  const rows = reqs.map((r,idx)=>`
+    <tr>
+      <td>${r.clientName}</td>
+      <td>${r.location}</td>
+      <td>${r.rolesNeeded||'—'}</td>
+      <td>${r.quantity}</td>
+      <td>${r.duration||'—'}</td>
+      <td><span class="badge ${r.status==='Fulfilled'?'green':(r.status==='Cancelled'?'red':'gold')}">${r.status}</span></td>
+      <td style="white-space:nowrap;">
+        <button class="btn3d small" onclick="updateDeploymentStatus(${idx},'In Progress')">In Progress</button>
+        <button class="btn3d small" onclick="updateDeploymentStatus(${idx},'Fulfilled')">Fulfilled</button>
+        <button class="btn3d small red" onclick="updateDeploymentStatus(${idx},'Cancelled')">Cancel</button>
+      </td>
+    </tr>`).join('');
+  return `<div class="panel">
+    <h3>Deployment Requests</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Log and track manpower deployment requests from your clients.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Client</th><th>Location</th><th>Roles Needed</th><th>Quantity</th><th>Duration</th><th>Status</th><th>Actions</th></tr>
+      ${rows || `<tr><td colspan="7" style="color:var(--text-dim);">No deployment requests logged yet.</td></tr>`}
+    </table>
+    </div>
+    <form class="profile-form" onsubmit="return addDeploymentRequest(event)" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Client Name</label><input type="text" id="drClient" required></div>
+        <div class="field"><label>Location</label><input type="text" id="drLocation" required></div>
+        <div class="field"><label>Roles Needed</label><input type="text" id="drRoles" placeholder="e.g. Electricians, Helpers"></div>
+        <div class="field"><label>Quantity</label><input type="number" id="drQty" min="1" required></div>
+        <div class="field"><label>Duration</label><input type="text" id="drDuration" placeholder="e.g. 3 months"></div>
+      </div>
+      <button class="btn3d red" type="submit">+ Log Request</button>
+    </form>
+  </div>`;
+}
+function addDeploymentRequest(e){
+  e.preventDefault();
+  const clientName = document.getElementById('drClient').value.trim();
+  const location = document.getElementById('drLocation').value.trim();
+  const rolesNeeded = document.getElementById('drRoles').value.trim();
+  const quantity = document.getElementById('drQty').value.trim();
+  const duration = document.getElementById('drDuration').value.trim();
+  if(!clientName || !location || !quantity) return false;
+  if(!deploymentRequests[currentUser.email]) deploymentRequests[currentUser.email] = [];
+  deploymentRequests[currentUser.email].push({clientName, location, rolesNeeded, quantity, duration, status:'New'});
+  playThankYou();
+  toast('Deployment request logged.');
+  renderTab(currentUser, 'deploy');
+  return false;
+}
+function updateDeploymentStatus(idx, status){
+  const reqs = deploymentRequests[currentUser.email];
+  if(!reqs || !reqs[idx]) return;
+  reqs[idx].status = status;
+  playClick();
+  toast('Status updated: '+status);
+  renderTab(currentUser, 'deploy');
+}
+
+/* ============ MANPOWER: Service Location ============ */
+function serviceLocationPanel(user){
+  const locs = serviceLocations[user.email] || [];
+  const items = locs.map((l,idx)=>`
+    <div class="check-item on" style="justify-content:space-between;">
+      <span>📍 ${l}</span>
+      <button class="offer-del" onclick="removeServiceLocation(${idx})">Remove</button>
+    </div>`).join('');
+  return `<div class="panel">
+    <h3>Service Location</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Cities and regions where you can supply manpower.</p>
+    <div class="check-group" style="margin-bottom:18px;">${items || '<div class="offer-empty">No service locations added yet.</div>'}</div>
+    <form class="profile-form" onsubmit="return addServiceLocation(event)">
+      <div class="field"><label>Add Location (City, State)</label><input type="text" id="slLocation" placeholder="e.g. Patna, Bihar" required></div>
+      <button class="btn3d red" type="submit">+ Add Location</button>
+    </form>
+  </div>`;
+}
+function addServiceLocation(e){
+  e.preventDefault();
+  const loc = document.getElementById('slLocation').value.trim();
+  if(!loc) return false;
+  if(!serviceLocations[currentUser.email]) serviceLocations[currentUser.email] = [];
+  serviceLocations[currentUser.email].push(loc);
+  playClick();
+  toast('Service location added.');
+  renderTab(currentUser, 'servicelocation');
+  return false;
+}
+function removeServiceLocation(idx){
+  const locs = serviceLocations[currentUser.email];
+  if(!locs) return;
+  locs.splice(idx,1);
+  playClick();
+  renderTab(currentUser, 'servicelocation');
+}
+
+/* ============ ADMIN: Pricing Module ============ */
+function pricingPanel(){
+  return `<div class="panel">
+    <h3>Platform Pricing</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:18px;">Set the prices used across the portal. Changes apply immediately everywhere they're shown.</p>
+    <div class="widgets" style="margin-bottom:24px;">
+      <div class="widget"><b>₹${pricing.atsBoost}</b><span>Job Seeker ATS Boost</span></div>
+      <div class="widget"><b>₹${pricing.employerNormalPosting}</b><span>Normal Hiring — per posting</span></div>
+      <div class="widget"><b>₹${pricing.employerHiringAssistant}+</b><span>Hiring Assistant — starting</span></div>
+      <div class="widget"><b>₹${pricing.premiumSubscription}</b><span>Premium Subscription</span></div>
+    </div>
+    <form class="profile-form" onsubmit="return savePricing(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Job Seeker ATS Boost (₹, one-time)</label><input type="number" id="prAts" value="${pricing.atsBoost}" min="0" required></div>
+        <div class="field"><label>Employer Normal Hiring — per posting (₹)</label><input type="number" id="prNormal" value="${pricing.employerNormalPosting}" min="0" required></div>
+        <div class="field"><label>Hiring Assistant Service — starting from (₹)</label><input type="number" id="prAssist" value="${pricing.employerHiringAssistant}" min="0" required></div>
+        <div class="field"><label>Premium Subscription — Freelancer/Trainer/Manpower/Contractor (₹)</label><input type="number" id="prPremium" value="${pricing.premiumSubscription}" min="0" required></div>
+      </div>
+      <button class="btn3d" type="submit">Save Pricing</button>
+    </form>
+  </div>`;
+}
+function savePricing(e){
+  e.preventDefault();
+  pricing.atsBoost = parseInt(document.getElementById('prAts').value)||0;
+  pricing.employerNormalPosting = parseInt(document.getElementById('prNormal').value)||0;
+  pricing.employerHiringAssistant = parseInt(document.getElementById('prAssist').value)||0;
+  pricing.premiumSubscription = parseInt(document.getElementById('prPremium').value)||0;
+  playThankYou();
+  toast('Pricing updated across the platform.');
+  renderTab(currentUser, 'pricing');
+  return false;
+}
+
+/* ============ ADMIN: Site Settings ============ */
+function siteSettingsPanel(){
+  const s = siteSettings;
+  return `<div class="panel">
+    <h3>Site Content</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:16px;">Edit the public-facing homepage copy. Changes apply live the moment you save.</p>
+    <form class="profile-form" onsubmit="return saveSiteSettings(event)">
+      <div class="field"><label>Hero Eyebrow (top small line)</label><input type="text" id="ssEyebrow" value="${s.heroEyebrow}"></div>
+      <div class="field"><label>Hero Title</label><input type="text" id="ssHeroTitle" value="${s.heroTitle}"></div>
+      <div class="field"><label>Hero Lead / Description</label><textarea id="ssHeroLead">${s.heroLead}</textarea></div>
+      <div class="field"><label>Moto Line</label><input type="text" id="ssMoto" value="${s.moto}"></div>
+      <div class="field"><label>Footer Text (basic HTML allowed, e.g. &lt;b&gt;)</label><textarea id="ssFooterText">${s.footerText}</textarea></div>
+
+      <h4 class="form-section-label">Logo &amp; Photo</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Logo Image URL</label><input type="text" id="ssLogoUrl" value="${s.logoUrl}" placeholder="https://... (leave blank to use text logo)"></div>
+        <div class="field"><label>Hero Banner / Photo URL</label><input type="text" id="ssBannerUrl" value="${s.bannerUrl}" placeholder="https://... (optional hero image)"></div>
+      </div>
+
+      <h4 class="form-section-label">Social Media Links</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Facebook</label><input type="text" id="ssFacebook" value="${s.social.facebook}" placeholder="https://facebook.com/..."></div>
+        <div class="field"><label>Twitter / X</label><input type="text" id="ssTwitter" value="${s.social.twitter}" placeholder="https://x.com/..."></div>
+        <div class="field"><label>LinkedIn</label><input type="text" id="ssLinkedin" value="${s.social.linkedin}" placeholder="https://linkedin.com/company/..."></div>
+        <div class="field"><label>Instagram</label><input type="text" id="ssInstagram" value="${s.social.instagram}" placeholder="https://instagram.com/..."></div>
+        <div class="field"><label>YouTube</label><input type="text" id="ssYoutube" value="${s.social.youtube}" placeholder="https://youtube.com/..."></div>
+      </div>
+
+      <h4 class="form-section-label">Contact Details</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Contact Email</label><input type="email" id="ssContactEmail" value="${s.contact.email}"></div>
+        <div class="field"><label>Contact Phone</label><input type="tel" id="ssContactPhone" value="${s.contact.phone}"></div>
+      </div>
+      <div class="field"><label>Address</label><input type="text" id="ssContactAddress" value="${s.contact.address}"></div>
+
+      <button class="btn3d" type="submit">Save Site Settings</button>
+    </form>
+    <p style="color:var(--text-dim);font-size:12px;margin-top:14px;">Pricing (ATS Boost, hiring fees, subscriptions) is managed separately under <a onclick="goToTab('pricing')" style="color:var(--green);cursor:pointer;font-weight:700;">Pricing</a>.</p>
+  </div>`;
+}
+
+function saveSiteSettings(e){
+  e.preventDefault();
+  siteSettings.heroEyebrow = document.getElementById('ssEyebrow').value;
+  siteSettings.heroTitle = document.getElementById('ssHeroTitle').value;
+  siteSettings.heroLead = document.getElementById('ssHeroLead').value;
+  siteSettings.moto = document.getElementById('ssMoto').value;
+  siteSettings.footerText = document.getElementById('ssFooterText').value;
+  siteSettings.logoUrl = document.getElementById('ssLogoUrl').value.trim();
+  siteSettings.bannerUrl = document.getElementById('ssBannerUrl').value.trim();
+  siteSettings.social = {
+    facebook: document.getElementById('ssFacebook').value.trim(),
+    twitter: document.getElementById('ssTwitter').value.trim(),
+    linkedin: document.getElementById('ssLinkedin').value.trim(),
+    instagram: document.getElementById('ssInstagram').value.trim(),
+    youtube: document.getElementById('ssYoutube').value.trim()
+  };
+  siteSettings.contact = {
+    email: document.getElementById('ssContactEmail').value.trim(),
+    phone: document.getElementById('ssContactPhone').value.trim(),
+    address: document.getElementById('ssContactAddress').value.trim()
+  };
+  applySiteSettings();
+  playThankYou();
+  toast('Site settings updated — changes are now live.');
+  logActivity('Admin updated site settings (content/logo/social/contact)');
+  renderTab(currentUser, 'sitesettings');
+  return false;
+}
+
+function applySiteSettings(){
+  const s = siteSettings;
+  const eyebrowEl = document.getElementById('heroEyebrowText');
+  if(eyebrowEl) eyebrowEl.innerHTML = s.heroEyebrow;
+  const titleEl = document.getElementById('heroTitleText');
+  if(titleEl) titleEl.textContent = s.heroTitle;
+  const leadEl = document.getElementById('heroLeadText');
+  if(leadEl) leadEl.textContent = s.heroLead;
+  const motoEl = document.getElementById('motoText');
+  if(motoEl) motoEl.textContent = s.moto;
+  const footerEl = document.getElementById('footerText');
+  if(footerEl) footerEl.innerHTML = s.footerText;
+
+  const logoImg = document.getElementById('siteLogoImg');
+  if(logoImg){
+    if(s.logoUrl){ logoImg.src = s.logoUrl; logoImg.style.display = 'inline-block'; }
+    else { logoImg.style.display = 'none'; }
+  }
+  const bannerImg = document.getElementById('siteBannerImg');
+  if(bannerImg){
+    if(s.bannerUrl){ bannerImg.src = s.bannerUrl; bannerImg.style.display = 'block'; }
+    else { bannerImg.style.display = 'none'; }
+  }
+
+  const socialEl = document.getElementById('footerSocial');
+  if(socialEl){
+    const links = [
+      s.social.facebook ? `<a href="${s.social.facebook}" target="_blank" rel="noopener">Facebook</a>` : '',
+      s.social.twitter ? `<a href="${s.social.twitter}" target="_blank" rel="noopener">Twitter / X</a>` : '',
+      s.social.linkedin ? `<a href="${s.social.linkedin}" target="_blank" rel="noopener">LinkedIn</a>` : '',
+      s.social.instagram ? `<a href="${s.social.instagram}" target="_blank" rel="noopener">Instagram</a>` : '',
+      s.social.youtube ? `<a href="${s.social.youtube}" target="_blank" rel="noopener">YouTube</a>` : ''
+    ].filter(Boolean).join('');
+    socialEl.innerHTML = links;
+  }
+  const contactEl = document.getElementById('footerContact');
+  if(contactEl){
+    const parts = [
+      s.contact.email ? `✉️ ${s.contact.email}` : '',
+      s.contact.phone ? `📞 ${s.contact.phone}` : '',
+      s.contact.address ? `📍 ${s.contact.address}` : ''
+    ].filter(Boolean).map(p=>`<span>${p}</span>`).join('');
+    contactEl.innerHTML = parts;
+  }
+}
+
+/* ============ CONTRACTOR: Active Project List ============ */
+function activeProjectListPanel(user){
+  const projects = contractorProjects[user.email] || [];
+  const rows = projects.map((p,idx)=>`
+    <tr>
+      <td>${p.name}</td>
+      <td>${p.client}</td>
+      <td style="max-width:160px;">${p.location||'—'}</td>
+      <td>${(p.contactName||p.contactNumber) ? (p.contactName||'—')+' · '+(p.contactNumber||'—') : '—'}</td>
+      <td>₹${p.value||'—'}</td>
+      <td>${p.contractPeriod || ((p.startDate||'—')+' → '+(p.endDate||'—'))}</td>
+      <td>${p.manpowerRequired||'—'}</td>
+      <td>${(p.manpowerRoles && p.manpowerRoles.length) ? p.manpowerRoles.join(', ') : '—'}</td>
+      <td style="max-width:200px;font-size:12px;color:var(--text-dim);">${p.description||'—'}</td>
+      <td><span class="badge ${p.status==='Completed'?'green':(p.status==='On Hold'?'red':'gold')}">${p.status}</span></td>
+      <td style="white-space:nowrap;">
+        <button class="btn3d small" onclick="updateProjectStatus(${idx},'Ongoing')">Ongoing</button>
+        <button class="btn3d small" onclick="updateProjectStatus(${idx},'Completed')">Completed</button>
+        <button class="btn3d small red" onclick="updateProjectStatus(${idx},'On Hold')">On Hold</button>
+        <button class="offer-del" onclick="removeProject(${idx})">Remove</button>
+      </td>
+    </tr>`).join('');
+  return `<div class="panel">
+    <h3>Active Project List</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Track every contract you're executing, from kickoff to close-out.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Project</th><th>Client</th><th>Location</th><th>Contact Person</th><th>Value</th><th>Contract Period</th><th>Manpower Req.</th><th>Role(s)</th><th>Description</th><th>Status</th><th>Actions</th></tr>
+      ${rows || `<tr><td colspan="11" style="color:var(--text-dim);">No active projects yet. Add one below.</td></tr>`}
+    </table>
+    </div>
+    <form class="profile-form" onsubmit="return addProject(event)" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:16px;">
+        <div class="field"><label>Project Name</label><input type="text" id="pjName" required></div>
+        <div class="field"><label>Client Name</label><input type="text" id="pjClient" required></div>
+      </div>
+      <div class="field"><label>Location (with full address)</label><textarea id="pjLocation" placeholder="Full site / office address"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Contact Person Name</label><input type="text" id="pjContactName"></div>
+        <div class="field"><label>Contact Person Number</label><input type="tel" id="pjContactNumber"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <div class="field"><label>Contract Value (₹)</label><input type="number" id="pjValue" min="0"></div>
+        <div class="field"><label>Start Date</label><input type="date" id="pjStart"></div>
+        <div class="field"><label>End Date</label><input type="date" id="pjEnd"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Contract Period</label><input type="text" id="pjContractPeriod" placeholder="e.g. 6 months, Jan–Jun 2027"></div>
+        <div class="field"><label>Total Manpower Required</label><input type="number" id="pjManpower" min="0" placeholder="e.g. 25"></div>
+      </div>
+      <div class="field">
+        <label>Role(s) of Manpower (select one or multiple)</label>
+        <div class="check-group" id="pjRoles">
+          ${manpowerRoleOptions.map(r=>`<label class="check-item"><input type="checkbox" value="${r}"> ${r}</label>`).join('')}
+        </div>
+      </div>
+      <div class="field"><label>Project Description</label><textarea id="pjDesc" placeholder="Scope of work, deliverables, key milestones..."></textarea></div>
+      <button class="btn3d red" type="submit">+ Add Project</button>
+    </form>
+  </div>`;
+}
+function addProject(e){
+  e.preventDefault();
+  const name = document.getElementById('pjName').value.trim();
+  const client = document.getElementById('pjClient').value.trim();
+  const location = document.getElementById('pjLocation').value.trim();
+  const contactName = document.getElementById('pjContactName').value.trim();
+  const contactNumber = document.getElementById('pjContactNumber').value.trim();
+  const value = document.getElementById('pjValue').value.trim();
+  const startDate = document.getElementById('pjStart').value;
+  const endDate = document.getElementById('pjEnd').value;
+  const contractPeriod = document.getElementById('pjContractPeriod').value.trim();
+  const manpowerRequired = document.getElementById('pjManpower').value.trim();
+  const manpowerRoles = Array.from(document.querySelectorAll('#pjRoles input:checked')).map(i=>i.value);
+  const description = document.getElementById('pjDesc').value.trim();
+  if(!name || !client) return false;
+  if(!contractorProjects[currentUser.email]) contractorProjects[currentUser.email] = [];
+  contractorProjects[currentUser.email].push({name, client, location, contactName, contactNumber, value, startDate, endDate, contractPeriod, manpowerRequired, manpowerRoles, description, status:'Ongoing'});
+  playThankYou();
+  toast('Project added to your Active Project List.');
+  renderTab(currentUser, 'activeprojects');
+  return false;
+}
+function updateProjectStatus(idx, status){
+  const list = contractorProjects[currentUser.email];
+  if(!list || !list[idx]) return;
+  list[idx].status = status;
+  playClick();
+  toast('Project status updated: '+status);
+  renderTab(currentUser, 'activeprojects');
+}
+function removeProject(idx){
+  const list = contractorProjects[currentUser.email];
+  if(!list) return;
+  list.splice(idx,1);
+  playClick();
+  renderTab(currentUser, 'activeprojects');
+}
+
+/* ============ CONTRACTOR: Received Bid ============ */
+function receivedBidPanel(user){
+  const bids = receivedBids[user.email] || [];
+  const rows = bids.map((b,idx)=>`
+    <tr>
+      <td>${b.bidderName}</td>
+      <td>${b.project}</td>
+      <td>₹${b.amount}</td>
+      <td>${b.contact||'—'}</td>
+      <td><span class="badge ${b.status==='Accepted'?'green':(b.status==='Rejected'?'red':'gold')}">${b.status}</span></td>
+      <td style="white-space:nowrap;">
+        <button class="btn3d small" ${b.status==='Accepted'?'disabled':''} onclick="setBidStatus(${idx},'Accepted')">Accept</button>
+        <button class="btn3d small red" ${b.status==='Rejected'?'disabled':''} onclick="setBidStatus(${idx},'Rejected')">Reject</button>
+      </td>
+    </tr>`).join('');
+  return `<div class="panel">
+    <h3>Received Bid</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Bids received from vendors and subcontractors for your projects.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Bidder</th><th>Project</th><th>Bid Amount</th><th>Contact</th><th>Status</th><th>Actions</th></tr>
+      ${rows || `<tr><td colspan="6" style="color:var(--text-dim);">No bids received yet.</td></tr>`}
+    </table>
+    </div>
+    <form class="profile-form" onsubmit="return logBid(event)" style="margin-top:18px;border-top:1px solid var(--border);padding-top:18px;">
+      <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:10px;">Log a bid you've received off-platform to track it here.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="field"><label>Bidder Name</label><input type="text" id="bdName" required></div>
+        <div class="field"><label>Project</label>
+          <select id="bdProject">
+            ${(contractorProjects[user.email]||[]).map(p=>`<option>${p.name}</option>`).join('') || '<option value="">No active projects</option>'}
+          </select>
+        </div>
+        <div class="field"><label>Bid Amount (₹)</label><input type="number" id="bdAmount" min="0" required></div>
+        <div class="field"><label>Contact</label><input type="text" id="bdContact" placeholder="Phone or email"></div>
+      </div>
+      <button class="btn3d red" type="submit">+ Log Bid</button>
+    </form>
+  </div>`;
+}
+function logBid(e){
+  e.preventDefault();
+  const bidderName = document.getElementById('bdName').value.trim();
+  const project = document.getElementById('bdProject').value;
+  const amount = document.getElementById('bdAmount').value.trim();
+  const contact = document.getElementById('bdContact').value.trim();
+  if(!bidderName || !amount) return false;
+  if(!receivedBids[currentUser.email]) receivedBids[currentUser.email] = [];
+  receivedBids[currentUser.email].push({bidderName, project, amount, contact, status:'New'});
+  playThankYou();
+  toast('Bid logged.');
+  renderTab(currentUser, 'receivedbid');
+  return false;
+}
+function setBidStatus(idx, status){
+  const bids = receivedBids[currentUser.email];
+  if(!bids || !bids[idx]) return;
+  bids[idx].status = status;
+  playClick();
+  toast('Bid '+status.toLowerCase()+'.');
+  renderTab(currentUser, 'receivedbid');
+}
+
+/* ============ ADMIN: CRM Module ============ */
+function crmPipelineCounts(){
+  const counts = {New:0, Contacted:0, Converted:0, Lost:0};
+  users.filter(u=>u.role!=='admin').forEach(u=>{
+    const s = crmStatus[u.email] || 'New';
+    counts[s] = (counts[s]||0) + 1;
+  });
+  return counts;
+}
+function crmPipelineRow(){
+  const counts = crmPipelineCounts();
+  return `<div class="pipeline-row">
+    <div class="pipeline-chip"><b>${counts.New}</b>New Leads</div>
+    <div class="pipeline-chip"><b>${counts.Contacted}</b>Contacted</div>
+    <div class="pipeline-chip"><b>${counts.Converted}</b>Converted</div>
+    <div class="pipeline-chip"><b>${counts.Lost}</b>Lost</div>
+  </div>`;
+}
+function crmActivityFeed(limit){
+  const items = activityLog.slice(0, limit||50);
+  if(!items.length) return `<div class="offer-empty">No activity recorded yet — actions across the portal will appear here in real time.</div>`;
+  return `<div class="activity-feed">${items.map(a=>`
+    <div class="activity-row"><span class="dot"></span><div><span class="txt">${a.text}</span><span class="time">${a.time}</span></div></div>`).join('')}</div>`;
+}
+function crmSnapshotWidget(){
+  return `<div class="panel">
+    <h3>CRM Snapshot</h3>
+    ${crmPipelineRow()}
+    <div style="margin-top:14px;">${crmActivityFeed(6)}</div>
+    <div style="margin-top:14px;"><button class="btn3d small dark" onclick="goToTab('crmdash')">Open Full CRM Dashboard</button></div>
+  </div>`;
+}
+function goToTab(tab){
+  renderTab(currentUser, tab);
+  document.querySelectorAll('.side-nav a').forEach(a=>a.classList.remove('active'));
+  const target = Array.from(document.querySelectorAll('.side-nav a')).find(a=> (a.getAttribute('onclick')||'').includes("'"+tab+"'"));
+  if(target) target.classList.add('active');
+}
+
+/* ---- Chart helpers: circular target gauge + comparative bar chart ---- */
+function svgGauge(percent, color){
+  percent = Math.max(0, Math.min(100, percent||0));
+  const size=110, stroke=10, radius=(size-stroke)/2, circumference=2*Math.PI*radius;
+  const offset = circumference - (percent/100)*circumference;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#26262c" stroke-width="${stroke}"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" transform="rotate(-90 ${size/2} ${size/2})"/>
+    <text x="50%" y="53%" text-anchor="middle" fill="#f3ede0" font-size="19" font-family="Cinzel, serif" font-weight="700">${Math.round(percent)}%</text>
+  </svg>`;
+}
+function gaugeCard(title, percent, color, sub){
+  return `<div class="gauge-card">${svgGauge(percent, color)}<div class="gauge-label">${title}</div><div class="gauge-sub">${sub||''}</div></div>`;
+}
+function pct(n,d){ return d>0 ? (n/d*100) : 0; }
+function barChart(data){
+  const max = Math.max(...data.map(d=>d.value), 1);
+  return `<div class="bar-chart">${data.map(d=>`
+    <div class="bar-row">
+      <span class="bar-label">${d.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.max((d.value/max*100),d.value>0?3:0)}%;background:${d.color};"></div></div>
+      <span class="bar-value">${d.value}</span>
+    </div>`).join('')}</div>`;
+}
+
+function crmMetrics(){
+  const employers = users.filter(u=>u.role==='employer');
+  const freelancers = users.filter(u=>u.role==='freelancer');
+  const activeClients = employers.filter(u=>jobPostings.some(j=>j.postedBy===u.email)).length;
+  const activeJobs = jobPostings.filter(j=>j.status==='Published' && j.openStatus!=='Closed').length;
+  const closedJobs = jobPostings.filter(j=>j.openStatus==='Closed').length;
+  const activeCandidates = candidates.length;
+  const hiredList = candidates.filter(c=>c.stage===stages.length-1);
+  const hiredCandidates = hiredList.length;
+  const shortlistedCandidates = candidates.filter(c=>c.stage===0).length;
+  const rejectedCandidates = Object.values(applications).reduce((s,arr)=>s+arr.filter(a=>a.status==='Rejected').length,0);
+  const totalApplications = Object.values(applications).reduce((s,arr)=>s+arr.length,0);
+  const activeFreelancers = freelancers.filter(u=>(offerings[u.email]||[]).some(o=>o.status==='Published')).length;
+  const allOfferings = Object.values(offerings).flat();
+  const activeFreelancerServices = allOfferings.filter(o=>o.status==='Published').length;
+  const pipelineFreelanceProjects = allOfferings.filter(o=>!o.status || o.status==='Pending').length;
+  const registeredUsers = users.filter(u=>u.role!=='admin').length;
+  return {employers, freelancers, activeClients, activeJobs, closedJobs, activeCandidates, hiredList, hiredCandidates,
+    shortlistedCandidates, rejectedCandidates, totalApplications, activeFreelancers, activeFreelancerServices,
+    pipelineFreelanceProjects, registeredUsers};
+}
+
+function crmDashboardPanel(){
+  const m = crmMetrics();
+
+  const kpiHtml = `<div class="widgets" style="margin-bottom:18px;">
+    <div class="widget"><b>${m.activeClients}</b><span>Active Client</span></div>
+    <div class="widget"><b>${m.activeJobs}</b><span>Active Job</span></div>
+    <div class="widget"><b>${m.closedJobs}</b><span>Closed Job</span></div>
+    <div class="widget"><b>${m.registeredUsers}</b><span>Number of Users Registered</span></div>
+  </div>
+  <div class="widgets" style="margin-bottom:18px;">
+    <div class="widget"><b>${m.activeCandidates}</b><span>Active Candidate</span></div>
+    <div class="widget"><b>${m.hiredCandidates}</b><span>Hired Candidate</span></div>
+    <div class="widget"><b>${m.shortlistedCandidates}</b><span>Shortlisted Candidate</span></div>
+    <div class="widget"><b>${m.rejectedCandidates}</b><span>Rejected Candidate</span></div>
+  </div>
+  <div class="widgets" style="margin-bottom:24px;">
+    <div class="widget"><b>${m.activeFreelancers}</b><span>Active Freelancer</span></div>
+    <div class="widget"><b>${m.activeFreelancerServices}</b><span>Active Freelancer Service</span></div>
+    <div class="widget"><b>${m.pipelineFreelanceProjects}</b><span>Pipeline Freelance Project</span></div>
+    <div class="widget"><b>${m.totalApplications}</b><span>Total Applications</span></div>
+  </div>`;
+
+  const hiredListHtml = `<div class="panel">
+    <h3>Hired Candidate List</h3>
+    ${m.hiredList.length ? `<div class="crm-hired-list">${m.hiredList.map(c=>`<div class="crm-hired-chip"><b>${c.name}</b>${c.role||''}</div>`).join('')}</div>` : '<div class="offer-empty">No candidates hired yet.</div>'}
+  </div>`;
+
+  const gaugesHtml = `<div class="panel">
+    <h3>Target Achievement — Circular View</h3>
+    <p style="color:var(--text-dim);font-size:12px;margin-bottom:16px;">Quick read on how close each process is to its goal.</p>
+    <div class="gauge-grid">
+      ${gaugeCard('Job Closure Rate', pct(m.closedJobs, m.closedJobs+m.activeJobs), 'var(--gold)', m.closedJobs+' of '+(m.closedJobs+m.activeJobs)+' jobs closed')}
+      ${gaugeCard('Candidate Hire Rate', pct(m.hiredCandidates, m.activeCandidates), 'var(--green)', m.hiredCandidates+' of '+m.activeCandidates+' in pipeline')}
+      ${gaugeCard('Freelancer Activation', pct(m.activeFreelancers, m.freelancers.length), 'var(--red)', m.activeFreelancers+' of '+m.freelancers.length+' freelancers')}
+    </div>
+  </div>`;
+
+  const funnelHtml = `<div class="panel">
+    <h3>Recruitment Funnel — Comparative View</h3>
+    ${barChart([
+      {label:'Applications', value:m.totalApplications, color:'var(--gold)'},
+      {label:'Shortlisted', value:m.activeCandidates, color:'var(--green)'},
+      {label:'Hired', value:m.hiredCandidates, color:'#4c9a00'},
+      {label:'Rejected', value:m.rejectedCandidates, color:'var(--red)'}
+    ])}
+  </div>`;
+
+  const roleCounts = {};
+  users.filter(u=>u.role!=='admin').forEach(u=>{ roleCounts[u.role]=(roleCounts[u.role]||0)+1; });
+  const roleBarHtml = `<div class="panel">
+    <h3>Registered Users by Role — Comparative View</h3>
+    ${barChart([
+      {label:'Job Seekers', value:roleCounts.jobseeker||0, color:'var(--gold)'},
+      {label:'Employers', value:roleCounts.employer||0, color:'var(--red)'},
+      {label:'Freelancers', value:roleCounts.freelancer||0, color:'var(--green)'},
+      {label:'Trainers', value:roleCounts.trainer||0, color:'#8a6dd6'},
+      {label:'Manpower', value:roleCounts.manpower||0, color:'#4aa3d8'},
+      {label:'Contractors', value:roleCounts.contractor||0, color:'#d88a4a'}
+    ])}
+  </div>`;
+
+  return kpiHtml + hiredListHtml + gaugesHtml + funnelHtml + roleBarHtml + `
+  <div class="panel">
+    <h3>Lead Pipeline</h3>
+    ${crmPipelineRow()}
+    <p style="color:var(--text-dim);font-size:12px;margin-top:10px;">Manage individual leads from <a onclick="goToTab('crmleads')" style="color:var(--green);cursor:pointer;font-weight:700;">All Leads</a>.</p>
+  </div>
+  <div class="panel">
+    <h3>Recent Activity — Across All Panels</h3>
+    ${crmActivityFeed(50)}
+  </div>`;
+}
+
+function crmLeadsPanel(){
+  const leads = users.filter(u=>u.role!=='admin');
+  const rows = leads.map(u=>{
+    const status = crmStatus[u.email] || 'New';
+    const notes = crmNotes[u.email] || [];
+    const lastNote = notes.length ? notes[0].note : '—';
+    return `<tr>
+      <td>${u.name}</td>
+      <td>${u.email}</td>
+      <td><span class="badge gold">${roleLabels[u.role]}</span></td>
+      <td><span class="badge ${status==='Converted'?'green':(status==='Lost'?'red':'gold')}">${status}</span></td>
+      <td style="max-width:200px;font-size:12px;color:var(--text-dim);">${lastNote}</td>
+      <td><button class="btn3d small dark" onclick="openCrmProfileModal('${u.email}')">Open CRM Profile</button></td>
+    </tr>`;
+  }).join('');
+  return `<div class="panel">
+    <h3>All Leads</h3>
+    <p style="color:var(--text-dim);font-size:12.5px;margin-bottom:14px;">Every registered user across every role, in one place, with pipeline status and notes.</p>
+    <div style="overflow-x:auto;">
+    <table>
+      <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Note</th><th>Actions</th></tr>
+      ${rows || `<tr><td colspan="6" style="color:var(--text-dim);">No leads yet.</td></tr>`}
+    </table>
+    </div>
+  </div>`;
+}
+
+function crmRoleSummary(u){
+  const email = u.email;
+  if(u.role==='jobseeker'){
+    const apps = applications[email] || [];
+    const p = profiles[email] || {};
+    return `<div><b style="color:var(--gold-light)">Applications Submitted:</b> ${apps.length}</div>
+      <div><b style="color:var(--gold-light)">ATS Subscription:</b> ${p.ats ? 'Active (₹'+pricing.atsBoost+')' : 'Free listing'}</div>
+      <div><b style="color:var(--gold-light)">Resume on File:</b> ${p.resumeName || 'Not uploaded'}</div>`;
+  }
+  if(u.role==='employer'){
+    const jobs = jobPostings.filter(j=>j.postedBy===email);
+    const apps = Object.keys(applications).reduce((s,e)=>s+(applications[e]||[]).filter(a=>jobs.some((j,idx)=>jobPostings[idx]===j && jobPostings.indexOf(j)===a.jobIdx)).length,0);
+    return `<div><b style="color:var(--gold-light)">Job Postings:</b> ${jobs.length}</div>
+      <div><b style="color:var(--gold-light)">Applications Received:</b> ${apps}</div>`;
+  }
+  if(u.role==='freelancer'){
+    const items = offerings[email] || [];
+    return `<div><b style="color:var(--gold-light)">Services Offered:</b> ${items.length}</div>
+      <div><b style="color:var(--gold-light)">Published:</b> ${items.filter(o=>o.status==='Published').length}</div>`;
+  }
+  if(u.role==='trainer'){
+    const items = courses[email] || [];
+    return `<div><b style="color:var(--gold-light)">Courses Offered:</b> ${items.length}</div>
+      <div><b style="color:var(--gold-light)">Published:</b> ${items.filter(c=>c.status==='Published').length}</div>`;
+  }
+  if(u.role==='manpower'){
+    const pool = workforcePool[email] || [];
+    const deploys = deploymentRequests[email] || [];
+    return `<div><b style="color:var(--gold-light)">Workforce Pool Entries:</b> ${pool.length}</div>
+      <div><b style="color:var(--gold-light)">Deployment Requests:</b> ${deploys.length}</div>`;
+  }
+  if(u.role==='contractor'){
+    const projects = contractorProjects[email] || [];
+    const bids = receivedBids[email] || [];
+    return `<div><b style="color:var(--gold-light)">Active Projects:</b> ${projects.length}</div>
+      <div><b style="color:var(--gold-light)">Bids Received:</b> ${bids.length}</div>`;
+  }
+  return '';
+}
+
+function openCrmProfileModal(email){
+  const u = users.find(x=>x.email===email);
+  if(!u) return;
+  const status = crmStatus[email] || 'New';
+  const notes = crmNotes[email] || [];
+  const html = `
+    <div class="admin-item-card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;color:var(--text);margin-bottom:14px;">
+        <div><b style="color:var(--gold-light)">Role:</b> ${roleLabels[u.role]}</div>
+        <div><b style="color:var(--gold-light)">Phone:</b> ${u.phone||'—'}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;color:var(--text);margin-bottom:16px;">
+        ${crmRoleSummary(u)}
+      </div>
+      <div class="field"><label>Lead Status</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn3d small ${status==='New'?'':'dark'}" onclick="setCrmStatus('${email}','New')">New</button>
+          <button class="btn3d small ${status==='Contacted'?'':'dark'}" onclick="setCrmStatus('${email}','Contacted')">Contacted</button>
+          <button class="btn3d small ${status==='Converted'?'':'dark'}" onclick="setCrmStatus('${email}','Converted')">Converted</button>
+          <button class="btn3d small red" onclick="setCrmStatus('${email}','Lost')">Lost</button>
+        </div>
+      </div>
+      <div class="field"><label>Add Follow-up Note</label>
+        <textarea id="crmNoteInput" placeholder="e.g. Called on phone, interested in ATS upgrade..."></textarea>
+      </div>
+      <button class="btn3d small" onclick="addCrmNote('${email}')">+ Add Note</button>
+      <div style="margin-top:16px;">
+        <label style="display:block;font-size:11px;color:var(--text-dim);margin-bottom:8px;">FOLLOW-UP HISTORY</label>
+        ${notes.length ? notes.map(n=>`<div class="crm-note">${n.note}<span class="time">${n.time}</span></div>`).join('') : '<div class="offer-empty">No notes yet.</div>'}
+      </div>
+    </div>`;
+  openModal('CRM Profile — '+u.name, html);
+}
+function setCrmStatus(email, status){
+  crmStatus[email] = status;
+  playClick();
+  toast('Lead status updated: '+status);
+  openCrmProfileModal(email);
+  if(activeTab==='crmleads') { /* refresh underneath without closing modal focus issues */ }
+}
+function addCrmNote(email){
+  const input = document.getElementById('crmNoteInput');
+  const text = input.value.trim();
+  if(!text) return;
+  if(!crmNotes[email]) crmNotes[email] = [];
+  crmNotes[email].unshift({note:text, time:new Date().toLocaleString()});
+  playClick();
+  toast('Note added.');
+  openCrmProfileModal(email);
+}
+
+function genericPanel(tab){
+  const titles = {
+    jobs:'Job Postings', apps:'My Applications', profile:'My Profile',
+    projects:'Open Projects', bids:'My Bids', batches:'My Batches',
+    certs:'Certifications', pool:'Workforce Pool', deploy:'Deployment Requests',
+    contracts:'Active Contracts'
+  };
+  return `<div class="panel"><h3>${titles[tab]||tab}</h3>
+  <p style="color:var(--text-dim);font-size:13.5px;line-height:1.7;">
+  This section is ready for your ${(titles[tab]||tab).toLowerCase()} data. Wire this panel up to your backend/API to show
+  live records here.</p></div>`;
+}
+</script>
+</body>
+</html>
