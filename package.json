@@ -1,0 +1,20 @@
+{
+  "name": "shield-job-portal",
+  "version": "1.0.0",
+  "description": "End-to-end job, freelance, training, manpower and contractual-project platform with ATS and CRM.",
+  "private": true,
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "job-portal",
+    "recruitment",
+    "ats",
+    "crm",
+    "freelance",
+    "manpower",
+    "training"
+  ],
+  "author": "Shield Infra Solutions",
+  "license": "ISC"
+}
